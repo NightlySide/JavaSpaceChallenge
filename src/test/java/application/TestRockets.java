@@ -3,7 +3,7 @@ package application;
 import junit.framework.TestCase;
 import org.junit.*;
 
-public class TestRockets extends TestCase {
+public class TestRockets {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
