@@ -69,8 +69,6 @@ public class Simulation {
             do {
                 budget += rocket.getPrice();
             } while(!rocket.launch() || !rocket.land());
-
-            System.out.println(budget);
         }
 
         return budget;
