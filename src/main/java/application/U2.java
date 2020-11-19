@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Random;
+
 public class U2 extends Rocket{
 
     public U2()
@@ -14,12 +16,14 @@ public class U2 extends Rocket{
     @Override
     public boolean launch()
     {
-        return true;
+        double chance_of_crash = 8/100 * (this.getWeight() / this.getMaxWeight());
+        return !(Math.random() < chance_of_crash);
     }
 
     @Override
     public boolean land()
     {
-        return true;
+        double chance_of_crash = 4/100 * (this.getWeight() / this.getMaxWeight());
+        return !(Math.random() < chance_of_crash);
     }
 }
