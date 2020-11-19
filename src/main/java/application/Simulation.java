@@ -30,12 +30,12 @@ public class Simulation {
         ArrayList<U1> rocketsList = new ArrayList<>();
         rocketsList.add(new U1());
 
-        U1 currentRocket = rocketsList.get(rocketsList.size());
+        U1 currentRocket = rocketsList.get(rocketsList.size() - 1);
 
         for (Item item : itemsList) {
             if (!currentRocket.canCarry(item)) {
                 rocketsList.add(new U1());
-                currentRocket = rocketsList.get(rocketsList.size());
+                currentRocket = rocketsList.get(rocketsList.size() - 1);
             }
 
             currentRocket.carry(item);
@@ -48,12 +48,12 @@ public class Simulation {
         ArrayList<U2> rocketsList = new ArrayList<>();
         rocketsList.add(new U2());
 
-        U2 currentRocket = rocketsList.get(rocketsList.size());
+        U2 currentRocket = rocketsList.get(rocketsList.size() - 1);
 
         for (Item item : itemsList) {
             if (!currentRocket.canCarry(item)) {
                 rocketsList.add(new U2());
-                currentRocket = rocketsList.get(rocketsList.size());
+                currentRocket = rocketsList.get(rocketsList.size() - 1);
             }
 
             currentRocket.carry(item);

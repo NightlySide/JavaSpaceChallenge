@@ -14,12 +14,14 @@ public class U1 extends Rocket {
     @Override
     public boolean launch()
     {
-        return true;
+        double chance_of_crash = 1/100 * (this.getWeight() / this.getMaxWeight());
+        return !(Math.random() < chance_of_crash);
     }
 
     @Override
     public boolean land()
     {
-        return true;
+        double chance_of_crash = 5/100 * (this.getWeight() / this.getMaxWeight());
+        return !(Math.random() < chance_of_crash);
     }
 }
