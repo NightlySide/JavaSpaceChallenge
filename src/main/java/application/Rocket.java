@@ -72,7 +72,7 @@ public abstract class Rocket implements SpaceShip {
      */
     public boolean canCarry(Item item)
     {
-        return this.weight < item.getWeight();
+        return this.weight + item.getWeight() <= this.getMaxWeight();
     }
 
     /*
