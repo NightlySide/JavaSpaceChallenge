@@ -66,8 +66,11 @@ public class Simulation {
         int budget = 0;
 
         for (Rocket rocket : rocketsList) {
-            do { budget += rocket.getPrice(); } while(!rocket.launch());
-            do { budget += rocket.getPrice(); } while(!rocket.land());
+            do {
+                budget += rocket.getPrice();
+            } while(!rocket.launch() || !rocket.land());
+
+            System.out.println(budget);
         }
 
         return budget;
