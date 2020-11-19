@@ -12,7 +12,7 @@
     <properties>
         <java.version>11</java.version>
         <jfx.version>14</jfx.version>
-        <mainclass>application.App</mainclass>
+        <mainclass>application.Main</mainclass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
