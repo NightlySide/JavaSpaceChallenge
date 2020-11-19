@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Simulation simulation = new Simulation();
 
-        ArrayList<Item> phase1Items = simulation.loadItems("Phase-1.txt");
-        ArrayList<Item> phase2Items = simulation.loadItems("Phase-2.txt");
+        ArrayList<Item> phase1Items = simulation.loadItems("res/Phase-1.txt");
+        ArrayList<Item> phase2Items = simulation.loadItems("res/Phase-2.txt");
 
         ArrayList<U1> rocketsPhase1 = simulation.loadU1(phase1Items);
         ArrayList<U2> rocketsPhase2 = simulation.loadU2(phase2Items);
