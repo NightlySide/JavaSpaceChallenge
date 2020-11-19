@@ -1,7 +1,6 @@
 package application;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,13 +15,54 @@ public class Simulation {
         if (file.exists()) {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
-                
+                String[] data = reader.nextLine().split("=");
+                Item i = new Item(data[0], Integer.parseInt(data[1]));
+                itemsList.add(i);
             }
-        }
-        else {
-            throw new FileNotFoundException(String.format("Le fichier %s n'a pas été trouvé !", filename));
+
+            return itemsList;
         }
 
-        return itemsList;
+        throw new FileNotFoundException(String.format("Le fichier %s n'a pas été trouvé !", filename));
+    }
+
+    public ArrayList<U1> loadU1(ArrayList<Item> itemsList) {
+        ArrayList<U1> rocketsList = new ArrayList<>();
+        rocketsList.add(new U1());
+
+        U1 currentRocket = rocketsList.get(rocketsList.size());
+
+        for (Item item : itemsList) {
+            if (!currentRocket.canCarry()) {
+                rocketsList.add(new U1());
+                currentRocket = rocketsList.get(rocketsList.size());
+            }
+
+            currentRocket.carry(item);
+        }
+
+        return rocketsList;
+    }
+
+    public ArrayList<U2> loadU1(ArrayList<Item> itemsList) {
+        ArrayList<U2> rocketsList = new ArrayList<>();
+        rocketsList.add(new U2());
+
+        U2 currentRocket = rocketsList.get(rocketsList.size());
+
+        for (Item item : itemsList) {
+            if (!currentRocket.canCarry()) {
+                rocketsList.add(new U2());
+                currentRocket = rocketsList.get(rocketsList.size());
+            }
+
+            currentRocket.carry(item);
+        }
+
+        return rocketsList;
+    }
+
+    public void runSimulation() {
+        
     }
 }
