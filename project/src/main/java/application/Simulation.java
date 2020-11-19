@@ -33,7 +33,7 @@ public class Simulation {
         U1 currentRocket = rocketsList.get(rocketsList.size());
 
         for (Item item : itemsList) {
-            if (!currentRocket.canCarry()) {
+            if (!currentRocket.canCarry(item)) {
                 rocketsList.add(new U1());
                 currentRocket = rocketsList.get(rocketsList.size());
             }
@@ -44,14 +44,14 @@ public class Simulation {
         return rocketsList;
     }
 
-    public ArrayList<U2> loadU1(ArrayList<Item> itemsList) {
+    public ArrayList<U2> loadU2(ArrayList<Item> itemsList) {
         ArrayList<U2> rocketsList = new ArrayList<>();
         rocketsList.add(new U2());
 
         U2 currentRocket = rocketsList.get(rocketsList.size());
 
         for (Item item : itemsList) {
-            if (!currentRocket.canCarry()) {
+            if (!currentRocket.canCarry(item)) {
                 rocketsList.add(new U2());
                 currentRocket = rocketsList.get(rocketsList.size());
             }
@@ -62,7 +62,14 @@ public class Simulation {
         return rocketsList;
     }
 
-    public void runSimulation() {
-        
+    public int runSimulation(ArrayList<Rocket> rocketsList) {
+        int budget = 0;
+
+        for (Rocket rocket : rocketsList) {
+            do { budget += rocket.getPrice(); } while(!rocket.launch());
+            do { budget += rocket.getPrice(); } while(!rocket.land());
+        }
+
+        return budget;
     }
 }
