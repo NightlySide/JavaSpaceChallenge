@@ -1,12 +1,17 @@
-package application;
+package modele;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        Simulation simulation = new Simulation();
+public class Service {
 
+    private static final Simulation simulation = new Simulation();
+
+    public static Simulation getSimulation() {
+        return simulation;
+    }
+
+    public static void main(String[] args) throws IOException {
         ArrayList<Item> phase1Items = simulation.loadItems("res/Phase-1.txt");
         ArrayList<Item> phase2Items = simulation.loadItems("res/Phase-2.txt");
 

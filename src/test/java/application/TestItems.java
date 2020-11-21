@@ -1,5 +1,6 @@
 package application;
 
+import modele.Item;
 import org.junit.*;
 import static org.junit.Assert.*;
 

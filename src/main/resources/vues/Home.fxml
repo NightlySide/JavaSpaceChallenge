@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<VBox fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
+   <children>
+       <VBox alignment="CENTER">
+          <Label alignment="CENTER" textAlignment="CENTER" text="Java Space Challenge (JSC)">
+             <font>
+                <Font size="34.0" />
+             </font>
+          </Label>
+       </VBox>
+   </children>
+</VBox>

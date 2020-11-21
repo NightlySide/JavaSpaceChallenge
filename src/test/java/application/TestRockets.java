@@ -1,5 +1,9 @@
 package application;
 
+import modele.Item;
+import modele.Rocket;
+import modele.U1;
+import modele.U2;
 import org.junit.*;
 import static org.junit.Assert.*;
 

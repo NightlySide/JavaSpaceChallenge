@@ -12,8 +12,10 @@
     <properties>
         <java.version>11</java.version>
         <jfx.version>14</jfx.version>
-        <mainclass>application.Main</mainclass>
+        <mainclass>application.App</mainclass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <RESOURCE_PATH>${project.basedir}/src/main/resources</RESOURCE_PATH>
+        <RESOURCE_PATH_TEST>${project.basedir}/src/test/resources</RESOURCE_PATH_TEST>
     </properties>
     <dependencies>
         <dependency>
@@ -101,5 +103,14 @@
                 <version>2.4</version>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>${RESOURCE_PATH}</directory>
+            </resource>
+            <resource>
+                <directory>${RESOURCE_PATH_TEST}</directory>
+            </resource>
+        </resources>
     </build>
 </project>

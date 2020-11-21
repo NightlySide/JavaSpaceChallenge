@@ -1,4 +1,4 @@
-package application;
+package modele;
 
 /*
     Classe: Item

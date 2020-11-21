@@ -1,5 +1,9 @@
 package application;
 
+import modele.Item;
+import modele.Simulation;
+import modele.U1;
+import modele.U2;
 import org.junit.Assert;
 import org.junit.Test;
 
