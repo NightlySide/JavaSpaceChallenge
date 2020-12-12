@@ -47,7 +47,7 @@ public class ObjectManagement {
         return phase;
     }
 
-    public Phase getObjects() throws IOException, ParseException, InvalidJSONFileException {
+    public Phase getObjects() throws InvalidJSONFileException {
 
         String value = (String) jsonObject.get("type");
         if (value.compareTo("objects")==0) {
@@ -74,11 +74,7 @@ public class ObjectManagement {
         }
     }
 
-    public void addObjects(Object object) throws IOException, ParseException, InvalidJSONFileException {
-        File file = new File(this.objectsPath);
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        JSONObject jsonObject = (JSONObject) o;
+    public void addObjects(Object object) throws IOException, InvalidJSONFileException {
         String value = (String) jsonObject.get("type");
         if (value.compareTo("objects")==0)
         {
@@ -90,7 +86,7 @@ public class ObjectManagement {
             newObject.put("priority", object.getPriority());
             JSONArray phase = (JSONArray) jsonObject.get(this.phase.getName());
             phase.add(newObject);
-            FileWriter writer = new FileWriter(file.getAbsoluteFile());
+            FileWriter writer = new FileWriter(this.objectsPath);
             writer.write(jsonObject.toJSONString());
             writer.close();
         }

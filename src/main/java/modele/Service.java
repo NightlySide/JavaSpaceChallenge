@@ -23,6 +23,15 @@ public class Service {
         phase1 = new ObjectManagement(phase1).getObjects();
         System.out.println(phase1);
 
+        ScenarioManagement scenarioManagement = new ScenarioManagement();
+        Scenario sc = scenarioManagement.getScenario();
+        System.out.println(sc);
+        sc.setPercentage_fill(0.9);
+        sc.setPercentage_u1(0.5);
+        scenarioManagement.editScenario(sc);
+        System.out.println(sc);
+
+
         ArrayList<Item> phase1Items = simulation.loadItems("res/Phase-1.txt");
         ArrayList<Item> phase2Items = simulation.loadItems("res/Phase-2.txt");
 

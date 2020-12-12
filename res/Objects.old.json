@@ -1,97 +1,97 @@
 {
-	"type": "objets",
+	"type": "objects",
 	"phase1": [
 		{
-			"nom": "building tools",
-			"prix": 2000,
-			"poids": 2000,
-			"quantite": 4,
+			"name": "building tools",
+			"price": 2000,
+			"weight": 2000,
+			"quantity": 4,
 			"priority": "low"
 		},
 		{
-			"nom": "building tools",
-			"prix": 5000,
-			"poids": 5000,
-			"quantite": 3,
+			"name": "building tools",
+			"price": 5000,
+			"weight": 5000,
+			"quantity": 3,
 			"priority": "low"
 		},
 		{
-			"nom": "building tools",
-			"prix": 1000,
-			"poids": 1000,
-			"quantite": 1,
+			"name": "building tools",
+			"price": 1000,
+			"weight": 1000,
+			"quantity": 1,
 			"priority": "low"
 		},
 		{
-			"nom": "building tools",
-			"prix": 6000,
-			"poids": 6000,
-			"quantite": 1,
+			"name": "building tools",
+			"price": 6000,
+			"weight": 6000,
+			"quantity": 1,
 			"priority": "low"
 		},
 		{
-			"nom": "shelter equipment",
-			"prix": 5000,
-			"poids": 5000,
-			"quantite": 1,
+			"name": "shelter equipment",
+			"price": 5000,
+			"weight": 5000,
+			"quantity": 1,
 			"priority": "high"
 		},
 		{
-			"nom": "plants",
-			"prix": 1000,
-			"poids": 1000,
-			"quantite": 1,
+			"name": "plants",
+			"price": 1000,
+			"weight": 1000,
+			"quantity": 1,
 			"priority": "medium"
 		},
 		{
-			"nom": "water",
-			"prix": 5000,
-			"poids": 5000,
-			"quantite": 1,
+			"name": "water",
+			"price": 5000,
+			"weight": 5000,
+			"quantity": 1,
 			"priority": "medium"
 		},
 		{
-			"nom": "steel",
-			"prix": 8000,
-			"poids": 8000,
-			"quantite": 1,
+			"name": "steel",
+			"price": 8000,
+			"weight": 8000,
+			"quantity": 1,
 			"priority": "medium"
 		},
 		{
-			"nom": "books",
-			"prix": 1000,
-			"poids": 1000,
-			"quantite": 1,
+			"name": "books",
+			"price": 1000,
+			"weight": 1000,
+			"quantity": 1,
 			"priority": "medium"
 		}
 	],
 	"phase2": [
 		{
-			"nom": "habitat",
-			"prix": 3000,
-			"poids": 3000,
-			"quantite": 1,
+			"name": "habitat",
+			"price": 3000,
+			"weight": 3000,
+			"quantity": 1,
 			"priority": "low"
 		},
 		{
-			"nom": "colony",
-			"prix": 5000,
-			"poids": 5000,
-			"quantite": 3,
+			"name": "colony",
+			"price": 5000,
+			"weight": 5000,
+			"quantity": 3,
 			"priority": "low"
 		},
 		{
-			"nom": "food",
-			"prix": 5000,
-			"poids": 5000,
-			"quantite": 4,
+			"name": "food",
+			"price": 5000,
+			"weight": 5000,
+			"quantity": 4,
 			"priority": "high"
 		},
 		{
-			"nom": "habitat",
-			"prix": 3000,
-			"poids": 3000,
-			"quantite": 1,
+			"name": "habitat",
+			"price": 3000,
+			"weight": 3000,
+			"quantity": 1,
 			"priority": "low"
 		}
 	]
