@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Phase {
@@ -11,8 +12,18 @@ public class Phase {
         this.myObject = myObject;
     }
 
+    public Phase(String name) {
+        this.name = name;
+        this.myObject = myObject = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void addObject(Object object)
+    {
+        this.myObject.add(object);
     }
 
     public List<Object> getMyObject() {
@@ -21,5 +32,16 @@ public class Phase {
 
     public void setMyObject(List<Object> myObject) {
         this.myObject = myObject;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append("name : ").append(this.getName()).append("\n");
+        for(Object object : this.getMyObject())
+        {
+            res.append("-    ").append(object.toString()).append("\n");
+        }
+        return String.valueOf(res);
     }
 }

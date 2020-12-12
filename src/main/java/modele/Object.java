@@ -2,12 +2,12 @@ package modele;
 
 public class Object {
     private final String name;
-    private final int price;
-    private final int weight;
-    private final int quantity;
+    private final Integer price;
+    private final Integer weight;
+    private final Integer quantity;
     private final String priority;
 
-    public Object(String name, int price, int weight, int quantity, String priority) {
+    public Object(String name, Integer price, Integer weight, Integer quantity, String priority) {
         this.name = name;
         this.price = price;
         this.weight = weight;
@@ -19,19 +19,30 @@ public class Object {
         return name;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
     public String getPriority() {
         return priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Object{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", quantity=" + quantity +
+                ", priority='" + priority + '\'' +
+                '}';
     }
 }
