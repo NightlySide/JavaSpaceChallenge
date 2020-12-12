@@ -1,13 +1,13 @@
 # Todo
 
--   type de donnée fichier phase 1 et 2 (JSON)
--   charger les données -> différentes classes / priorités (enum) d'objet
--   classe spéciale "donnée" ou "item"
--   générer un nombre aléatoire étant une distribution statistique
--   afficher une courbe sur javafx (courbe de prix et courbe d'explosions)
--   implémenter différents algorithmes de "remplissage"
--   chargement / sauvegarde de paramètres
--   éditeur d'objets
+-   ~~type de donnée fichier phase 1 et 2 (JSON)~~
+-   charger les données -> différentes classes / priorités (enum) d'objet (Erwan)
+-   ~~classe spéciale "donnée" ou "item"~~ (Erwan)
+-   générer un nombre aléatoire étant une distribution statistique (Alex)
+-   afficher une courbe sur javafx (courbe de prix et courbe d'explosions) (Erwan)
+-   implémenter différents algorithmes de "remplissage" (Erwan / Alex)
+-   chargement / sauvegarde de paramètres (Erwan)
+-   éditeur d'objets (Alex)
 
 # Params
 
