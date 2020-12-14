@@ -5,15 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <BorderPane fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
     <children>
         <VBox alignment="CENTER_LEFT" />
     </children>
     <top>
-        <Label text="Editeur de Phase" BorderPane.alignment="CENTER">
+        <Label text="Java Space Challenge" BorderPane.alignment="CENTER">
             <font>
                 <Font size="26.0" />
             </font>
@@ -22,17 +19,10 @@
             </opaqueInsets>
         </Label>
     </top>
-    <center>
-        <LineChart BorderPane.alignment="CENTER">
-            <xAxis>
-                <CategoryAxis side="BOTTOM" />
-            </xAxis>
-            <yAxis>
-                <NumberAxis side="LEFT" />
-            </yAxis>
-        </LineChart>
-    </center>
     <bottom>
-        <Button onAction="#editPhase" mnemonicParsing="false" text="Editer objet" BorderPane.alignment="CENTER" />
+        <Button mnemonicParsing="false" onAction="#editPhase" text="Editer objet" BorderPane.alignment="CENTER" />
     </bottom>
+   <center>
+      <HBox fx:id="linegraph" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
