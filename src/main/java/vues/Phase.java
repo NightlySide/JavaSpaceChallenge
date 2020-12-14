@@ -1,26 +1,24 @@
 package vues;
 
 import controlleurs.Controlleur;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class Home {
+public class Phase {
     @FXML
-    public BorderPane monPane;
+    public VBox monPane;
 
     private Stage stage;
     private Controlleur controlleur;
 
-    public static Home creerInstance(Controlleur controlleur, Stage stage) {
-        URL location = Home.class.getResource("/vues/Home.fxml");
+    public static Phase creerInstance(Controlleur controlleur, Stage stage) {
+        URL location = Phase.class.getResource("/vues/Phase.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         try {
             fxmlLoader.load();
@@ -28,7 +26,7 @@ public class Home {
             e.printStackTrace();
         }
 
-        Home vue = fxmlLoader.getController();
+        Phase vue = fxmlLoader.getController();
         vue.setStage(stage);
         vue.setControlleur(controlleur);
 
@@ -47,9 +45,5 @@ public class Home {
 
     private void setStage(Stage stage) {
         this.stage = stage;
-    }
-
-    public void editPhase(ActionEvent actionEvent) {
-        controlleur.goToPhase();
     }
 }
