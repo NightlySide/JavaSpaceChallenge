@@ -15,6 +15,8 @@ public abstract class Rocket implements SpaceShip {
     private int price;
     private int weight;
     private int maxWeight;
+    private double crashPercentAtFullLand;
+    private double crashPercentAtFullLaunch;
 
     /* Getter / Setter du prix */
     public int getPrice() {
@@ -40,6 +42,20 @@ public abstract class Rocket implements SpaceShip {
         this.maxWeight = maxWeight;
     }
 
+    public double getCrashPercentAtFullLand() {
+        return crashPercentAtFullLand;
+    }
+    public void setCrashPercentAtFullLand(double crashPercentAtFullLand) {
+        this.crashPercentAtFullLand = crashPercentAtFullLand;
+    }
+
+    public double getCrashPercentAtFullLaunch() {
+        return crashPercentAtFullLaunch;
+    }
+    public void setCrashPercentAtFullLaunch(double crashPercentAtFullLaunch) {
+        this.crashPercentAtFullLaunch = crashPercentAtFullLaunch;
+    }
+
     /*
         Méthode : launch()
         ------------------
@@ -47,10 +63,11 @@ public abstract class Rocket implements SpaceShip {
 
         returns: la fusée s'est bien lancée
      */
-    public boolean launch()
+    public boolean launch(DistributionType crashDistroType)
     {
         return true;
     }
+    public boolean launch() { return launch(DistributionType.UNDEFINED); }
 
     /*
         Méthode : land()
@@ -59,10 +76,11 @@ public abstract class Rocket implements SpaceShip {
 
         returns: la fusée a bien atterit
      */
-    public boolean land()
+    public boolean land(DistributionType crashDistroType)
     {
         return true;
     }
+    public boolean land() { return land(DistributionType.UNDEFINED); }
 
     /*
         Méthode : canCarry(Item)
@@ -100,10 +118,13 @@ public abstract class Rocket implements SpaceShip {
         weight (int): le poids initial de la fusée
         maxWeight (int): le poids maximal que la fusée peut transporter
      */
-    public Rocket(int price, int weight, int maxWeight) {
+    public Rocket(int price, int weight, int maxWeight, double crashPercentAtFullLaunch, double crashPercentAtFullLand) {
         this.price = price;
         this.weight = weight;
         this.maxWeight = maxWeight;
+        this.crashPercentAtFullLand = crashPercentAtFullLand;
+        this.crashPercentAtFullLaunch = crashPercentAtFullLaunch;
+
         this.alea = new Random();
     }
 }

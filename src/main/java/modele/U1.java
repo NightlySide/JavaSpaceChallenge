@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.function.Function;
+
 /*
     Classe : U1
     -----------
@@ -20,25 +22,39 @@ public class U1 extends Rocket {
         maxWeight (int): le poids maximal que la fusée peut transporter
      */
     public U1(int price, int weight, int maxWeight) {
-        super(price, weight, maxWeight);
+        super(price, weight, maxWeight, 5.0, 5.0);
     }
     public U1()  {
-        super(100, 10000,18000);
+        super(100, 10000,18000, 5.0, 5.0);
     }
 
     @Override
-    public boolean launch()
+    public boolean launch(DistributionType crashDistroType)
     {
         // On calcule le risque de se crasher
-        double chance_of_crash = 5.0/100.0 * (double) this.getWeight() / (double) this.getMaxWeight();
+        double chance_of_crash;
+        switch (crashDistroType) {
+            case EXPONENTIAL:
+                chance_of_crash = CrashDistribution.ExponentialDistributionChance(this, this.getCrashPercentAtFullLaunch(), 5);
+                break;
+            default:
+                chance_of_crash = CrashDistribution.LinearDistributionChance(this, this.getCrashPercentAtFullLaunch());
+        }
         return !(this.alea.nextDouble() < chance_of_crash);
     }
 
     @Override
-    public boolean land()
+    public boolean land(DistributionType crashDistroType)
     {
         // On calcule le risque de se crasher
-        double chance_of_crash = 5.0/100.0 * (double) this.getWeight() / (double) this.getMaxWeight();
+        double chance_of_crash;
+        switch (crashDistroType) {
+            case EXPONENTIAL:
+                chance_of_crash = CrashDistribution.ExponentialDistributionChance(this, this.getCrashPercentAtFullLand(), 5);
+                break;
+            default:
+                chance_of_crash = CrashDistribution.LinearDistributionChance(this, this.getCrashPercentAtFullLand());
+        }
         return !(this.alea.nextDouble() < chance_of_crash);
     }
 }
