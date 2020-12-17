@@ -1,7 +1,7 @@
 package modele;
 
 public enum FillingType {
-    FIFO,
+    NAIVE,
     PACKET,
     MORE_SPACE
 }
