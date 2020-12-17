@@ -15,8 +15,8 @@ public abstract class Rocket implements SpaceShip {
     private int price;
     private int weight;
     private int maxWeight;
-    private double crashPercentAtFullLand;
-    private double crashPercentAtFullLaunch;
+    private double crashPercentAtFullLand = 5.0;
+    private double crashPercentAtFullLaunch = 5.0;
 
     /* Getter / Setter du prix */
     public int getPrice() {
@@ -56,6 +56,22 @@ public abstract class Rocket implements SpaceShip {
         this.crashPercentAtFullLaunch = crashPercentAtFullLaunch;
     }
 
+    private double computeCrashChance(DistributionType crashDistroType, double riskAtFullCapacity) {
+        // On calcule le risque de se crasher
+        double chance_of_crash;
+        switch (crashDistroType) {
+            case EXPONENTIAL:
+                chance_of_crash = CrashDistribution.ExponentialDistributionChance(this, riskAtFullCapacity, 5);
+                break;
+            case SIGMOID:
+                chance_of_crash = CrashDistribution.SigmoidDistributionChance(this, riskAtFullCapacity, 3);
+                break;
+            default:
+                chance_of_crash = CrashDistribution.LinearDistributionChance(this, riskAtFullCapacity);
+        }
+        return chance_of_crash;
+    }
+
     /*
         Méthode : launch()
         ------------------
@@ -65,9 +81,9 @@ public abstract class Rocket implements SpaceShip {
      */
     public boolean launch(DistributionType crashDistroType)
     {
-        return true;
+        return (this.alea.nextDouble() >= computeCrashChance(crashDistroType, this.getCrashPercentAtFullLaunch()));
     }
-    public boolean launch() { return launch(DistributionType.UNDEFINED); }
+    public boolean launch() { return true; }
 
     /*
         Méthode : land()
@@ -78,9 +94,9 @@ public abstract class Rocket implements SpaceShip {
      */
     public boolean land(DistributionType crashDistroType)
     {
-        return true;
+        return (this.alea.nextDouble() >= computeCrashChance(crashDistroType, this.getCrashPercentAtFullLaunch()));
     }
-    public boolean land() { return land(DistributionType.UNDEFINED); }
+    public boolean land() { return true; }
 
     /*
         Méthode : canCarry(Item)
