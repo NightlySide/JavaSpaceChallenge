@@ -3,33 +3,37 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox fx:id="monPane" prefHeight="562.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Phase">
     <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phase editor" textAlignment="CENTER" wrappingWidth="798.67138671875">
-         <font>
-            <Font size="23.0" />
-         </font>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Text>
+      <VBox alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" text="Editeur de phase" textAlignment="CENTER">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="Noto Sans Regular" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
         <VBox alignment="CENTER_LEFT" />
       <TitledPane animated="false" prefHeight="217.0" prefWidth="799.0" text="phase 1">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="182.0" prefWidth="797.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="797.0">
                <children>
-                  <TableView fx:id="tablePhase1" prefHeight="184.0" prefWidth="799.0" AnchorPane.leftAnchor="-10.399999999999977" AnchorPane.rightAnchor="-2.0">
+                  <TableView fx:id="tablePhase1" editable="true" layoutX="21.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
                      <columns>
                         <TableColumn prefWidth="450.0" text="Nom" />
-                        <TableColumn minWidth="0.0" prefWidth="70.0" text="Prix" />
+                        <TableColumn prefWidth="70.0" text="Prix" />
                         <TableColumn prefWidth="70.0" text="Poids" />
                         <TableColumn prefWidth="100.0" text="Quantité" />
                         <TableColumn prefWidth="70.0" text="Priorité" />
@@ -42,14 +46,14 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane animated="false" prefHeight="228.0" prefWidth="799.0" text="phase 2">
+      <TitledPane animated="false" prefWidth="799.0" text="phase 2">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="tablePhase2" layoutX="9.4" layoutY="-1.0" prefHeight="194.0" prefWidth="799.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
+                  <TableView fx:id="tablePhase2" editable="true" layoutX="9.4" layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
                      <columns>
                         <TableColumn prefWidth="450.0" text="Nom" />
-                        <TableColumn minWidth="0.0" prefWidth="70.0" text="Prix" />
+                        <TableColumn prefWidth="70.0" text="Prix" />
                         <TableColumn prefWidth="70.0" text="Poids" />
                         <TableColumn prefWidth="100.0" text="Quantité" />
                         <TableColumn prefWidth="70.0" text="Priorité" />

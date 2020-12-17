@@ -61,19 +61,23 @@ public class Phase {
 
     private void prepareTablePhase1()
     {
-        tablePhase1.setEditable(false);
+        tablePhase1.setEditable(true);
 
         tablePhase1.setRowFactory(tv -> {
             TableRow<Object> row = new TableRow<>();
+
 
             return row;
         });
 
         TableColumn<Object, String> name = new TableColumn<>("name");
+        TableColumn<Object, String> price = new TableColumn<>("price");
 
         name.setCellValueFactory(
                 new PropertyValueFactory<>("name")
+
         );
+
 
         tablePhase1.getColumns().set(0,name);
     }
