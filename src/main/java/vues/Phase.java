@@ -50,6 +50,7 @@ public class Phase {
         stage.setScene(new Scene(monPane, 800,600));
         stage.show();
         initObjectPhase1();
+        initObjectPhase2();
     }
 
     public void initObjectPhase1() throws IOException, ParseException, InvalidJSONFileException {
@@ -72,14 +73,80 @@ public class Phase {
 
         TableColumn<Object, String> name = new TableColumn<>("name");
         TableColumn<Object, String> price = new TableColumn<>("price");
+        TableColumn<Object, String> weight = new TableColumn<>("weight");
+        TableColumn<Object, String> quantity = new TableColumn<>("quantity");
+        TableColumn<Object, String> priority = new TableColumn<>("priority");
 
         name.setCellValueFactory(
                 new PropertyValueFactory<>("name")
-
+        );
+        price.setCellValueFactory(
+                new PropertyValueFactory<>("price")
+        );
+        weight.setCellValueFactory(
+                new PropertyValueFactory<>("weight")
+        );
+        quantity.setCellValueFactory(
+                new PropertyValueFactory<>("quantity")
+        );
+        priority.setCellValueFactory(
+                new PropertyValueFactory<>("priority")
         );
 
 
         tablePhase1.getColumns().set(0,name);
+        tablePhase1.getColumns().set(1,price);
+        tablePhase1.getColumns().set(2,weight);
+        tablePhase1.getColumns().set(3,quantity);
+        tablePhase1.getColumns().set(4,priority);
+    }
+
+    public void initObjectPhase2() throws IOException, ParseException, InvalidJSONFileException {
+        modele.Phase phase = new modele.Phase("phase2");
+        phase = new ObjectManagement(phase).getObjects();
+        tablePhase2.getItems().addAll(phase.getMyObject());
+        prepareTablePhase2();
+    }
+
+    private void prepareTablePhase2()
+    {
+        tablePhase2.setEditable(true);
+
+        tablePhase2.setRowFactory(tv -> {
+            TableRow<Object> row = new TableRow<>();
+
+
+            return row;
+        });
+
+        TableColumn<Object, String> name = new TableColumn<>("name");
+        TableColumn<Object, String> price = new TableColumn<>("price");
+        TableColumn<Object, String> weight = new TableColumn<>("weight");
+        TableColumn<Object, String> quantity = new TableColumn<>("quantity");
+        TableColumn<Object, String> priority = new TableColumn<>("priority");
+
+        name.setCellValueFactory(
+                new PropertyValueFactory<>("name")
+        );
+        price.setCellValueFactory(
+                new PropertyValueFactory<>("price")
+        );
+        weight.setCellValueFactory(
+                new PropertyValueFactory<>("weight")
+        );
+        quantity.setCellValueFactory(
+                new PropertyValueFactory<>("quantity")
+        );
+        priority.setCellValueFactory(
+                new PropertyValueFactory<>("priority")
+        );
+
+
+        tablePhase2.getColumns().set(0,name);
+        tablePhase2.getColumns().set(1,price);
+        tablePhase2.getColumns().set(2,weight);
+        tablePhase2.getColumns().set(3,quantity);
+        tablePhase2.getColumns().set(4,priority);
     }
 
     private void setControlleur(Controlleur controlleur) {
