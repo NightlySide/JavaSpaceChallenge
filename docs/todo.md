@@ -26,3 +26,9 @@
 # Bonus
 
 -   enregistrer la courbe obtenue sous forme d'image
+
+
+# Rapport
+
+-> Définir précisément le problème posé !!! (hyper important)
+-> Définir un cahier des charges
