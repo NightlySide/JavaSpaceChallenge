@@ -95,7 +95,7 @@ public class TestRockets {
         for (DistributionType distroType : DistributionType.values()) {
             System.out.println("Essai pour la distribution : " + distroType);
 
-            rocketU1.setWeight(rocketU1.getMaxWeight());
+            rocketU1.setWeight((int) (Math.random() * rocketU1.getMaxWeight()));
 
             int nbLaunch = 10000;
             double chance_of_crash = rocketU1.computeCrashChance(distroType, rocketU1.getCrashPercentAtFullLaunch());
