@@ -1,1 +1,98 @@
-{"phase1":[{"quantity":4,"price":2000,"name":"building tools","weight":2000,"priority":"low"},{"quantity":3,"price":5000,"name":"building tools","weight":5000,"priority":"low"},{"quantity":1,"price":1000,"name":"building tools","weight":1000,"priority":"low"},{"quantity":1,"price":6000,"name":"building tools","weight":6000,"priority":"low"},{"quantity":1,"price":5000,"name":"shelter equipment","weight":5000,"priority":"high"},{"quantity":1,"price":1000,"name":"plants","weight":1000,"priority":"medium"},{"quantity":1,"price":5000,"name":"water","weight":5000,"priority":"medium"},{"quantity":1,"price":8000,"name":"steel","weight":8000,"priority":"medium"},{"quantity":1,"price":1000,"name":"books","weight":1000,"priority":"medium"}],"phase2":[{"quantity":1,"price":3000,"name":"habitat","weight":3000,"priority":"low"},{"quantity":3,"price":5000,"name":"colony","weight":5000,"priority":"low"},{"quantity":4,"price":5000,"name":"food","weight":5000,"priority":"high"},{"quantity":1,"price":3000,"name":"habitat","weight":3000,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"TEST","weight":500,"priority":"low"},{"quantity":2,"price":500,"name":"Nothingtest","weight":0,"priority":"low"}],"type":"objects"}
+{
+  "type": "objects",
+  "phase1": [
+    {
+      "name": "building tools",
+      "price": 2000,
+      "weight": 2000,
+      "quantity": 4,
+      "priority": "low"
+    },
+    {
+      "name": "building tools",
+      "price": 5000,
+      "weight": 5000,
+      "quantity": 3,
+      "priority": "low"
+    },
+    {
+      "name": "building tools",
+      "price": 1000,
+      "weight": 1000,
+      "quantity": 1,
+      "priority": "low"
+    },
+    {
+      "name": "building tools",
+      "price": 6000,
+      "weight": 6000,
+      "quantity": 1,
+      "priority": "low"
+    },
+    {
+      "name": "shelter equipment",
+      "price": 5000,
+      "weight": 5000,
+      "quantity": 1,
+      "priority": "high"
+    },
+    {
+      "name": "plants",
+      "price": 1000,
+      "weight": 1000,
+      "quantity": 1,
+      "priority": "medium"
+    },
+    {
+      "name": "water",
+      "price": 5000,
+      "weight": 5000,
+      "quantity": 1,
+      "priority": "medium"
+    },
+    {
+      "name": "steel",
+      "price": 8000,
+      "weight": 8000,
+      "quantity": 1,
+      "priority": "medium"
+    },
+    {
+      "name": "books",
+      "price": 1000,
+      "weight": 1000,
+      "quantity": 1,
+      "priority": "medium"
+    }
+  ],
+  "phase2": [
+    {
+      "name": "habitat",
+      "price": 3000,
+      "weight": 3000,
+      "quantity": 1,
+      "priority": "low"
+    },
+    {
+      "name": "colony",
+      "price": 5000,
+      "weight": 5000,
+      "quantity": 3,
+      "priority": "low"
+    },
+    {
+      "name": "food",
+      "price": 5000,
+      "weight": 5000,
+      "quantity": 4,
+      "priority": "high"
+    },
+    {
+      "name": "habitat",
+      "price": 3000,
+      "weight": 3000,
+      "quantity": 1,
+      "priority": "low"
+    }
+  ]
+}

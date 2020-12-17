@@ -48,6 +48,12 @@ public class Service {
 
         System.out.println(Filling.moreSpaceFilling(allObjects,allRocket));
 
+        allObjects = new ArrayList<>();
+        allObjects.addAll(phase1.getMyObject());
+        allObjects.addAll(phase2.getMyObject());
+
+        System.out.println(Filling.packetFilling(allObjects,allRocket));
+
         /**
         ScenarioManagement scenarioManagement = new ScenarioManagement();
         Scenario sc = scenarioManagement.getScenario();
