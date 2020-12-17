@@ -9,6 +9,7 @@
 -   ~~chargement / sauvegarde de paramètres (Erwan)~~
 -   éditeur d'objets (Guillaume / Erwan)
 -   éditeur d'ammelioration de fusée (Guillaume) 
+-   possibilité de lancer une simulation et d'avoir le résultat dans la fenetre
 
 # Params
 

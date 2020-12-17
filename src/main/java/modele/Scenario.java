@@ -4,11 +4,13 @@ public class Scenario {
     private double percentage_u1;
     private double percentage_fill;
     private String algo_fill;
+    private DistributionType crashDistoType;
 
-    public Scenario(double percentage_u1, double percentage_fill, String algo_fill) {
+    public Scenario(double percentage_u1, double percentage_fill, String algo_fill, DistributionType distributionType) {
         this.percentage_u1 = percentage_u1;
         this.percentage_fill = percentage_fill;
         this.algo_fill = algo_fill;
+        this.crashDistoType = distributionType;
     }
 
     public double getPercentage_u1() {
@@ -23,6 +25,8 @@ public class Scenario {
         return algo_fill;
     }
 
+    public DistributionType getCrashDistoType() { return crashDistoType; }
+
     public void setPercentage_u1(double percentage_u1) {
         this.percentage_u1 = percentage_u1;
     }
@@ -35,12 +39,15 @@ public class Scenario {
         this.algo_fill = algo_fill;
     }
 
+    public void setCrashDistoType(DistributionType crashDistoType) { this.crashDistoType = crashDistoType; }
+
     @Override
     public String toString() {
         return "Scenario{" +
                 "percentage_u1=" + percentage_u1 +
                 ", percentage_fill=" + percentage_fill +
                 ", algo_fill='" + algo_fill + '\'' +
+                ", crashDistroType=" + crashDistoType +
                 '}';
     }
 }

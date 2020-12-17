@@ -58,7 +58,8 @@ public class ScenarioManagement {
             this.scenario = new Scenario(
                     (Double) sc.get("percentage_u1"),
                     (Double) sc.get("percentage_fill"),
-                    (String) sc.get("algo_fill")
+                    (String) sc.get("algo_fill"),
+                    DistributionType.valueOf((String) sc.get("crash_distro_type"))
             );
             return this.scenario;
         }
