@@ -92,25 +92,27 @@ public class TestRockets {
     @Test
     public void crash_distribution_test() {
         System.out.println("Début du test de distribution de crash ...");
-        rocketU1.setWeight(rocketU1.getMaxWeight());
+        for (DistributionType distroType : DistributionType.values()) {
+            System.out.println("Essai pour la distribution : " + distroType);
 
-        DistributionType distoType = DistributionType.EXPONENTIAL;
+            rocketU1.setWeight(rocketU1.getMaxWeight());
 
-        int nbLaunch = 10000;
-        double chance_of_crash = rocketU1.computeCrashChance(distoType, rocketU1.getCrashPercentAtFullLaunch());
-        double esperance = nbLaunch * chance_of_crash;
-        double ecartType = Math.sqrt(esperance * (1 - chance_of_crash));
+            int nbLaunch = 10000;
+            double chance_of_crash = rocketU1.computeCrashChance(distroType, rocketU1.getCrashPercentAtFullLaunch());
+            double esperance = nbLaunch * chance_of_crash;
+            double ecartType = Math.sqrt(esperance * (1 - chance_of_crash));
 
-        int crashes = 0;
-        for (int i = 0; i < nbLaunch; i++) {
-            if (!rocketU1.launch(distoType)) crashes++;
+            int crashes = 0;
+            for (int i = 0; i < nbLaunch; i++) {
+                if (!rocketU1.launch(distroType)) crashes++;
+            }
+
+            System.out.println("Nb lancements : " + nbLaunch);
+            System.out.println("Espérance : " + esperance);
+            System.out.println("Ecart-type : " + ecartType);
+            System.out.println("Nb crashs : " + crashes);
+
+            assertTrue((esperance - 3 * ecartType < crashes && crashes < esperance + 3 * ecartType));
         }
-
-        System.out.println("Nb lancements : " + nbLaunch);
-        System.out.println("Espérance : " + esperance);
-        System.out.println("Ecart-type : " + ecartType);
-        System.out.println("Nb crashs : " + crashes);
-
-        assertTrue((esperance - 3 * ecartType < crashes && crashes < esperance + 3 * ecartType));
     }
 }
