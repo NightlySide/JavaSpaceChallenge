@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Random;
+
 /*
     Classe abstraite : Rocket
     -------------------------
@@ -9,6 +11,7 @@ package modele;
  */
 public abstract class Rocket implements SpaceShip {
 
+    protected final Random alea;
     private int price;
     private int weight;
     private int maxWeight;
@@ -101,6 +104,6 @@ public abstract class Rocket implements SpaceShip {
         this.price = price;
         this.weight = weight;
         this.maxWeight = maxWeight;
+        this.alea = new Random();
     }
-    public Rocket() {}
 }

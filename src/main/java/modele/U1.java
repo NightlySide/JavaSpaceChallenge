@@ -31,7 +31,7 @@ public class U1 extends Rocket {
     {
         // On calcule le risque de se crasher
         double chance_of_crash = 5.0/100.0 * (double) this.getWeight() / (double) this.getMaxWeight();
-        return !(Math.random() < chance_of_crash);
+        return !(this.alea.nextDouble() < chance_of_crash);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class U1 extends Rocket {
     {
         // On calcule le risque de se crasher
         double chance_of_crash = 5.0/100.0 * (double) this.getWeight() / (double) this.getMaxWeight();
-        return !(Math.random() < chance_of_crash);
+        return !(this.alea.nextDouble() < chance_of_crash);
     }
 }

@@ -91,4 +91,27 @@ public class TestRockets {
         assertTrue(rocketU1.getWeight() > initalWeight1);
         assertTrue(rocketU2.getWeight() > initalWeight2);
     }
+
+    @Test
+    public void crash_distribution_test() {
+        System.out.println("Début du test de distribution de crash ...");
+        rocketU1.setWeight(rocketU1.getMaxWeight());
+
+        int nbLaunch = 10000;
+        double chance_of_crash = 5.0 / 100.0 * (double) rocketU1.getWeight() / (double) rocketU1.getMaxWeight();
+        double esperance = nbLaunch * chance_of_crash;
+        double ecartType = Math.sqrt(esperance * (1 - chance_of_crash));
+
+        int crashes = 0;
+        for (int i = 0; i < nbLaunch; i++) {
+            if (!rocketU1.launch()) crashes++;
+        }
+
+        System.out.println("Nb lancements : " + nbLaunch);
+        System.out.println("Espérance : " + esperance);
+        System.out.println("Ecart-type : " + ecartType);
+        System.out.println("Nb crashs : " + crashes);
+
+        assertTrue((esperance - 3 * ecartType < crashes && crashes < esperance + 3 * ecartType));
+    }
 }
