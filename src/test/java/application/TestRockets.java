@@ -1,9 +1,6 @@
 package application;
 
-import modele.Item;
-import modele.Rocket;
-import modele.U1;
-import modele.U2;
+import modele.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -97,14 +94,16 @@ public class TestRockets {
         System.out.println("Début du test de distribution de crash ...");
         rocketU1.setWeight(rocketU1.getMaxWeight());
 
+        DistributionType distoType = DistributionType.EXPONENTIAL;
+
         int nbLaunch = 10000;
-        double chance_of_crash = 5.0 / 100.0 * (double) rocketU1.getWeight() / (double) rocketU1.getMaxWeight();
+        double chance_of_crash = rocketU1.computeCrashChance(distoType, rocketU1.getCrashPercentAtFullLaunch());
         double esperance = nbLaunch * chance_of_crash;
         double ecartType = Math.sqrt(esperance * (1 - chance_of_crash));
 
         int crashes = 0;
         for (int i = 0; i < nbLaunch; i++) {
-            if (!rocketU1.launch()) crashes++;
+            if (!rocketU1.launch(distoType)) crashes++;
         }
 
         System.out.println("Nb lancements : " + nbLaunch);

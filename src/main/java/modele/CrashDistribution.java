@@ -1,12 +1,5 @@
 package modele;
 
-enum DistributionType {
-    LINEAR,
-    EXPONENTIAL,
-    SIGMOID,
-    UNDEFINED
-}
-
 public class CrashDistribution {
 
     static double weightRatio(Rocket rocket) {

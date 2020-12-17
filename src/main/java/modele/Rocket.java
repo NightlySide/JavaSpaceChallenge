@@ -56,7 +56,7 @@ public abstract class Rocket implements SpaceShip {
         this.crashPercentAtFullLaunch = crashPercentAtFullLaunch;
     }
 
-    private double computeCrashChance(DistributionType crashDistroType, double riskAtFullCapacity) {
+    public double computeCrashChance(DistributionType crashDistroType, double riskAtFullCapacity) {
         // On calcule le risque de se crasher
         double chance_of_crash;
         switch (crashDistroType) {
