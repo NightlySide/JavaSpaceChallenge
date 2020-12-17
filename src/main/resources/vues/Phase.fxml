@@ -26,11 +26,11 @@
          </children>
       </VBox>
         <VBox alignment="CENTER_LEFT" />
-      <TitledPane animated="false" prefHeight="217.0" prefWidth="799.0" text="phase 1">
+      <TitledPane animated="false" prefWidth="799.0" text="phase 1">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="797.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" >
                <children>
-                  <TableView fx:id="tablePhase1" editable="true" layoutX="21.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
+                  <TableView fx:id="tablePhase1" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
                      <columns>
                         <TableColumn prefWidth="450.0" text="Nom" />
                         <TableColumn prefWidth="70.0" text="Prix" />
@@ -48,9 +48,9 @@
       </TitledPane>
       <TitledPane animated="false" prefWidth="799.0" text="phase 2">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" >
                <children>
-                  <TableView fx:id="tablePhase2" editable="true" layoutX="9.4" layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
+                  <TableView fx:id="tablePhase2" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
                      <columns>
                         <TableColumn prefWidth="450.0" text="Nom" />
                         <TableColumn prefWidth="70.0" text="Prix" />
@@ -66,9 +66,9 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar maxHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <buttons>
-            <AnchorPane prefHeight="40.0" prefWidth="265.0">
+            <AnchorPane prefWidth="265.0">
                <children>
                   <Button layoutX="59.0" layoutY="7.0" mnemonicParsing="false" text="Annuler" AnchorPane.leftAnchor="59.0" />
                   <Button layoutX="144.0" layoutY="7.0" mnemonicParsing="false" text="sauvegarder" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="21.0" />
