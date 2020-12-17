@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modele.InvalidJSONFileException;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -93,7 +95,7 @@ public class Home {
         this.stage = stage;
     }
 
-    public void editPhase(ActionEvent actionEvent) {
+    public void editPhase(ActionEvent actionEvent) throws ParseException, InvalidJSONFileException, IOException {
         controlleur.goToPhase();
     }
 }

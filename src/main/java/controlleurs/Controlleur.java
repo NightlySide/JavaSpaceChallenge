@@ -1,9 +1,13 @@
 package controlleurs;
 
 import javafx.stage.Stage;
+import modele.InvalidJSONFileException;
 import modele.Service;
+import org.json.simple.parser.ParseException;
 import vues.Home;
 import vues.Phase;
+
+import java.io.IOException;
 
 public class Controlleur {
 
@@ -22,8 +26,7 @@ public class Controlleur {
         return service;
     }
 
-    public void goToPhase()
-    {
+    public void goToPhase() throws ParseException, InvalidJSONFileException, IOException {
         phase = Phase.creerInstance(this, new Stage());
         phase.show();
     }

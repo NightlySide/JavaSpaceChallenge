@@ -26,7 +26,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="182.0" prefWidth="797.0">
                <children>
-                  <TableView prefHeight="184.0" prefWidth="799.0" AnchorPane.leftAnchor="-10.399999999999977" AnchorPane.rightAnchor="-2.0">
+                  <TableView fx:id="tablePhase1" prefHeight="184.0" prefWidth="799.0" AnchorPane.leftAnchor="-10.399999999999977" AnchorPane.rightAnchor="-2.0">
                      <columns>
                         <TableColumn prefWidth="450.0" text="Nom" />
                         <TableColumn minWidth="0.0" prefWidth="70.0" text="Prix" />
@@ -46,7 +46,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="9.4" layoutY="-1.0" prefHeight="194.0" prefWidth="799.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
+                  <TableView fx:id="tablePhase2" layoutX="9.4" layoutY="-1.0" prefHeight="194.0" prefWidth="799.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
                      <columns>
                         <TableColumn prefWidth="450.0" text="Nom" />
                         <TableColumn minWidth="0.0" prefWidth="70.0" text="Prix" />
