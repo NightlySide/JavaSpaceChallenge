@@ -26,6 +26,8 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Home {
     @FXML
@@ -33,6 +35,9 @@ public class Home {
 
     @FXML
     public HBox linegraph;
+    LineChart linechart;
+    NumberAxis xAxis;
+    NumberAxis yAxis;
 
     @FXML
     public SplitMenuButton matRepartButton;
@@ -70,13 +75,15 @@ public class Home {
 
     private void initChart()
     {
-        NumberAxis xAxis = new NumberAxis(0, 20, 10);
+        xAxis = new NumberAxis(0, 20, 10);
+        xAxis.setAutoRanging(false);
         xAxis.setLabel("Hour");
 
-        NumberAxis yAxis = new NumberAxis   (0, 100, 10);
+        yAxis = new NumberAxis(0, 100, 10);
+        yAxis.setAutoRanging(false);
         yAxis.setLabel("Cookies");
 
-        LineChart linechart = new LineChart(xAxis, yAxis);
+        linechart = new LineChart(xAxis, yAxis);
 
         XYChart.Series<Integer,Integer> series = new XYChart.Series<>();
         series.setName("Number of cookies in my room");
@@ -164,16 +171,32 @@ public class Home {
     }
 
     public void runSimulationClick(ActionEvent actionEvent) {
+        XYChart.Series<Integer,Integer> serieBudget = new XYChart.Series<>();
+        serieBudget.setName("Simulation");
+        linechart.getData().add(serieBudget);
+
         Thread t = new Thread(() -> {
+            double maxBudget = yAxis.getUpperBound();
             loadingBar.setVisible(true);
             runSimButton.setDisable(true);
-            for (int k = 0; k < 10_000; k++){
+
+            ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
+
+            for (int k = 0; k < 150; k++){
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
                 ObjectManagement om = new ObjectManagement(phase1);
                 ArrayList<U1> rockets = simu.loadU1(om.getObjects());
-                System.out.printf("Budget : %d k€%n", simu.runSimulation(rockets, DistributionType.EXPONENTIAL));
+                int budget = simu.runSimulation(rockets, DistributionType.EXPONENTIAL);
+                System.out.printf("Budget : %d k€%n", budget);
+                points.add(new XYChart.Data<>(k, budget));
+                xAxis.setUpperBound(k);
+                if ((double) budget > maxBudget) {
+                    maxBudget = (double) budget;
+                }
+                yAxis.setUpperBound(maxBudget);
             }
+            serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
             runSimButton.setDisable(false);
         });
