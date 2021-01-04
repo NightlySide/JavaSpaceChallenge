@@ -1,16 +1,36 @@
 package modele;
 
+import org.json.simple.JSONObject;
+
 public class Scenario {
     private double percentage_u1;
     private double percentage_fill;
-    private String algo_fill;
+    private FillingType algo_fill;
     private DistributionType crashDistoType;
 
-    public Scenario(double percentage_u1, double percentage_fill, String algo_fill, DistributionType distributionType) {
+    public Scenario(double percentage_u1, double percentage_fill, FillingType algo_fill, DistributionType distributionType) {
         this.percentage_u1 = percentage_u1;
         this.percentage_fill = percentage_fill;
         this.algo_fill = algo_fill;
         this.crashDistoType = distributionType;
+    }
+
+    public static Scenario fromJsonObject(JSONObject jsonObject) {
+        String value = (String) jsonObject.get("type");
+        if (value.compareTo("scenario")==0) {
+            JSONObject sc = (JSONObject) jsonObject.get("params");
+            return new Scenario(
+                    (Double) sc.get("percentage_u1"),
+                    (Double) sc.get("percentage_fill"),
+                    FillingType.valueOf(((String) sc.get("algo_fill")).toUpperCase()),
+                    DistributionType.valueOf(((String) sc.get("crash_distro_type")).toUpperCase())
+            );
+        }
+        else
+        {
+            System.out.println("Wrong file type");
+            return null;
+        }
     }
 
     public double getPercentage_u1() {
@@ -21,7 +41,7 @@ public class Scenario {
         return percentage_fill;
     }
 
-    public String getAlgo_fill() {
+    public FillingType getAlgo_fill() {
         return algo_fill;
     }
 
@@ -35,7 +55,7 @@ public class Scenario {
         this.percentage_fill = percentage_fill;
     }
 
-    public void setAlgo_fill(String algo_fill) {
+    public void setAlgo_fill(FillingType algo_fill) {
         this.algo_fill = algo_fill;
     }
 

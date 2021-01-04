@@ -17,7 +17,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modele.FillingType;
 import modele.InvalidJSONFileException;
+import modele.Scenario;
+import modele.ScenarioManagement;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -118,6 +121,8 @@ public class Home {
         for (MenuItem item : matRepartButton.getItems()) {
             if (actionEvent.getSource().equals(item)) {
                 matRepartButton.setText(item.getText());
+                ScenarioManagement.getInstance().getScenario().setAlgo_fill(FillingType.fromText(item.getText()));
+                System.out.println(ScenarioManagement.getInstance().getScenario().getAlgo_fill());
             }
         }
     }

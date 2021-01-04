@@ -7,66 +7,59 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ScenarioManagement {
-    private final String scenarioPath;
+    private String scenarioPath;
     private Scenario scenario;
-    private final JSONObject jsonObject;
+    private JSONObject jsonObject;
 
-    public ScenarioManagement(Scenario scenario) throws IOException, ParseException {
-        this.scenarioPath = "res/Scenario.json";
-        this.scenario = scenario;
+    private static ScenarioManagement INSTANCE = null;
 
-        File file = new File(this.scenarioPath);
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        this.jsonObject = (JSONObject) o;
-    }
-
-    public ScenarioManagement() throws IOException, ParseException {
+    private ScenarioManagement() {
         this.scenarioPath = "res/Scenario.json";
 
         File file = new File(this.scenarioPath);
         JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        this.jsonObject = (JSONObject) o;
+        try {
+            java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
+            this.jsonObject = (JSONObject) o;
+            this.scenario = Scenario.fromJsonObject(this.jsonObject);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public ScenarioManagement(String scenarioPath, Scenario scenario) throws IOException, ParseException {
-        this.scenarioPath = scenarioPath;
+    public static synchronized ScenarioManagement getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new ScenarioManagement();
+        }
+
+        return INSTANCE;
+    }
+
+    public void fromPath(String filePath) throws IOException, ParseException {
+        scenarioPath = filePath;
+
+        File file = new File(this.scenarioPath);
+        JSONParser parser = new JSONParser();
+        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
+        jsonObject = (JSONObject) o;
+        this.scenario = Scenario.fromJsonObject(this.jsonObject);
+    }
+
+    public void fromScenario(Scenario scenario) throws IOException, ParseException {
+        scenarioPath = "res/Scenario.json";
         this.scenario = scenario;
 
-        File file = new File(this.scenarioPath);
+        File file = new File(scenarioPath);
         JSONParser parser = new JSONParser();
         java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
         this.jsonObject = (JSONObject) o;
     }
 
-    public ScenarioManagement(String scenarioPath) throws IOException, ParseException {
-        this.scenarioPath = scenarioPath;
-
-        File file = new File(this.scenarioPath);
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        this.jsonObject = (JSONObject) o;
-    }
-
-    public Scenario getScenario() throws InvalidJSONFileException {
-        String value = (String) jsonObject.get("type");
-        if (value.compareTo("scenario")==0) {
-            JSONObject sc = (JSONObject) jsonObject.get("params");
-            this.scenario = new Scenario(
-                    (Double) sc.get("percentage_u1"),
-                    (Double) sc.get("percentage_fill"),
-                    (String) sc.get("algo_fill"),
-                    DistributionType.valueOf((String) sc.get("crash_distro_type"))
-            );
-            return this.scenario;
-        }
-        else
-        {
-            throw new InvalidJSONFileException("Invalid type !");
-        }
+    public Scenario getScenario() {
+        return this.scenario;
     }
 
     public void editScenario(Scenario scenario) throws InvalidJSONFileException, IOException {
