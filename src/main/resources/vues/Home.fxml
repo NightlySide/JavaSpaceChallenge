@@ -103,7 +103,7 @@
         <buttons>
             <Button mnemonicParsing="false" text="editer la simulation" ButtonBar.buttonData="LEFT"/>
             <Button mnemonicParsing="false" text="lancer la simulation" />
-            <Button mnemonicParsing="false" text="editer les objets" ButtonBar.buttonData="RIGHT" />
+            <Button mnemonicParsing="false" onAction="#editPhase" text="editer les objets" ButtonBar.buttonData="RIGHT" />
         </buttons>
       </ButtonBar>
    </bottom>
