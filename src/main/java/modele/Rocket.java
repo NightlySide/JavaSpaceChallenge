@@ -107,9 +107,9 @@ public abstract class Rocket implements SpaceShip {
 
         returns: est-ce que la fusée peut l'emporter ou non
      */
-    public boolean canCarry(Item item)
+    public boolean canCarry(Object obj)
     {
-        return this.weight + item.getWeight() <= this.getMaxWeight();
+        return this.weight + obj.getWeight() <= this.getMaxWeight();
     }
 
     /*
@@ -119,9 +119,9 @@ public abstract class Rocket implements SpaceShip {
 
         item (Item): l'objet à transporter
      */
-    public void carry(Item item)
+    public void carry(Object obj)
     {
-        this.weight += item.getWeight();
+        this.weight += obj.getWeight();
     }
 
     /*

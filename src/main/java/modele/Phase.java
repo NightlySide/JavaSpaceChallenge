@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Phase {
     private final String name;
-    private List<Object> myObject;
+    private ArrayList<Object> objects;
 
-    public Phase(String name, List<Object> myObject) {
+    public Phase(String name, ArrayList<Object> objects) {
         this.name = name;
-        this.myObject = myObject;
+        this.objects = objects;
     }
 
     public Phase(String name) {
         this.name = name;
-        this.myObject = myObject = new ArrayList<>();
+        this.objects = objects = new ArrayList<>();
     }
 
     public String getName() {
@@ -23,22 +23,22 @@ public class Phase {
 
     public void addObject(Object object)
     {
-        this.myObject.add(object);
+        this.objects.add(object);
     }
 
-    public List<Object> getMyObject() {
-        return myObject;
+    public ArrayList<Object> getObjects() {
+        return objects;
     }
 
-    public void setMyObject(List<Object> myObject) {
-        this.myObject = myObject;
+    public void setObject(ArrayList<Object> objects) {
+        this.objects = objects;
     }
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("name : ").append(this.getName()).append("\n");
-        for(Object object : this.getMyObject())
+        for(Object object : this.getObjects())
         {
             res.append("-    ").append(object.toString()).append("\n");
         }

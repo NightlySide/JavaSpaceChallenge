@@ -1,7 +1,9 @@
 package application;
 
 import modele.*;
+import modele.Object;
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 public class TestRockets {
@@ -63,8 +65,8 @@ public class TestRockets {
     public void item_can_carry_test() {
         System.out.println("Début du test de la capacité de transport des objets ...");
 
-        Item lightItem = new Item("Item léger", 20);
-        Item heavyItem = new Item("Item trop lourd", 2200000);
+        Object lightItem = new Object("Item léger", 20, 20, 1, "low");
+        Object heavyItem = new Object("Item trop lourd", 2200000, 2200000, 1, "low");
 
         // on vérifie que les rockets puissent porter les items légers
         assertTrue(rocketU1.canCarry(lightItem));
@@ -78,7 +80,7 @@ public class TestRockets {
     public void item_carry_test() {
         System.out.println("Début du test de transport des objets ...");
 
-        Item lightItem = new Item("Item léger", 20);
+        Object lightItem = new Object("Item léger", 20, 20, 1, "low");
 
         int initalWeight1 = rocketU1.getWeight();
         int initalWeight2 = rocketU2.getWeight();

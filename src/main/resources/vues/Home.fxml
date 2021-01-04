@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -28,37 +29,42 @@
     </top>
 
    <center>
-      <HBox fx:id="linegraph" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="100.0" right="100.0" />
-         </BorderPane.margin></HBox>
+         </BorderPane.margin>
+         <children>
+            <HBox fx:id="linegraph" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" fx:id="loadingBar" visible="false" />
+         </children>
+      </VBox>
    </center>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie matériel" />
-            <SplitMenuButton mnemonicParsing="false" text="répartition" fx:id="matRepartButton" >
+            <SplitMenuButton fx:id="matRepartButton" mnemonicParsing="false" text="répartition">
               <items>
-                <MenuItem mnemonicParsing="false" text="Je réparti le matériel" onAction="#matRepartOptionClick" />
-                <MenuItem mnemonicParsing="false" text="Je bourre" onAction="#matRepartOptionClick" />
+                <MenuItem mnemonicParsing="false" onAction="#matRepartOptionClick" text="Je réparti le matériel" />
+                <MenuItem mnemonicParsing="false" onAction="#matRepartOptionClick" text="Je bourre" />
               </items>
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </SplitMenuButton>
-            <SplitMenuButton mnemonicParsing="false" text="risque" fx:id="matRiskButton">
+            <SplitMenuButton fx:id="matRiskButton" mnemonicParsing="false" text="risque">
               <items>
-                <MenuItem mnemonicParsing="false" text="très précautionneux" onAction="#matRiskOptionClick" />
-                <MenuItem mnemonicParsing="false" text="Yolo" onAction="#matRiskOptionClick" />
+                <MenuItem mnemonicParsing="false" onAction="#matRiskOptionClick" text="très précautionneux" />
+                <MenuItem mnemonicParsing="false" onAction="#matRiskOptionClick" text="Yolo" />
               </items>
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </SplitMenuButton>
-            <SplitMenuButton mnemonicParsing="false" text="fusée" fx:id="matFuseeTypeButton">
+            <SplitMenuButton fx:id="matFuseeTypeButton" mnemonicParsing="false" text="fusée">
               <items>
-                <MenuItem mnemonicParsing="false" text="U1" onAction="#matFuseeTypeOptionClick" />
-                <MenuItem mnemonicParsing="false" text="U2" onAction="#matFuseeTypeOptionClick" />
+                <MenuItem mnemonicParsing="false" onAction="#matFuseeTypeOptionClick" text="U1" />
+                <MenuItem mnemonicParsing="false" onAction="#matFuseeTypeOptionClick" text="U2" />
               </items>
                <VBox.margin>
                   <Insets top="50.0" />
@@ -73,20 +79,20 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie humaine"/>
-            <SplitMenuButton mnemonicParsing="false" text="risque" fx:id="humanRiskButton" >
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie humaine" />
+            <SplitMenuButton fx:id="humanRiskButton" mnemonicParsing="false" text="risque">
                <items>
-                  <MenuItem mnemonicParsing="false" text="priorité vie humaine" onAction="#humanRiskOptionClick" />
-                  <MenuItem mnemonicParsing="false" text="chair à canon" onAction="#humanRiskOptionClick" />
+                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="priorité vie humaine" />
+                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="chair à canon" />
                </items>
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </SplitMenuButton>
-            <SplitMenuButton mnemonicParsing="false" text="fusée" fx:id="humanFuseeTypeButton">
+            <SplitMenuButton fx:id="humanFuseeTypeButton" mnemonicParsing="false" text="fusée">
               <items>
-                <MenuItem mnemonicParsing="false" text="U1" onAction="#humanFuseeTypeOptionClick" />
-                <MenuItem mnemonicParsing="false" text="U2" onAction="#humanFuseeTypeOptionClick" />
+                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U1" />
+                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U2" />
               </items>
                <VBox.margin>
                   <Insets top="50.0" />
@@ -101,9 +107,9 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
         <buttons>
-            <Button mnemonicParsing="false" text="editer la simulation" ButtonBar.buttonData="LEFT"/>
-            <Button mnemonicParsing="false" text="lancer la simulation" />
-            <Button mnemonicParsing="false" onAction="#editPhase" text="editer les objets" ButtonBar.buttonData="RIGHT" />
+            <Button mnemonicParsing="false" text="Éditer la simulation" ButtonBar.buttonData="LEFT" />
+            <Button mnemonicParsing="false" onAction="#runSimulationClick" text="Lancer la simulation" fx:id="runSimButton" />
+            <Button mnemonicParsing="false" onAction="#editPhase" text="Éditer les objets" ButtonBar.buttonData="RIGHT" />
         </buttons>
       </ButtonBar>
    </bottom>

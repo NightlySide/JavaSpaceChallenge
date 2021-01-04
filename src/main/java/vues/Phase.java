@@ -55,8 +55,8 @@ public class Phase {
 
     public void initObjectPhase1() throws IOException, ParseException, InvalidJSONFileException {
         modele.Phase phase = new modele.Phase("phase1");
-        phase = new ObjectManagement(phase).getObjects();
-        tablePhase1.getItems().addAll(phase.getMyObject());
+        phase = new ObjectManagement(phase).getPhase();
+        tablePhase1.getItems().addAll(phase.getObjects());
         prepareTablePhase1();
     }
 
@@ -103,8 +103,8 @@ public class Phase {
 
     public void initObjectPhase2() throws IOException, ParseException, InvalidJSONFileException {
         modele.Phase phase = new modele.Phase("phase2");
-        phase = new ObjectManagement(phase).getObjects();
-        tablePhase2.getItems().addAll(phase.getMyObject());
+        phase = new ObjectManagement(phase).getPhase();
+        tablePhase2.getItems().addAll(phase.getObjects());
         prepareTablePhase2();
     }
 

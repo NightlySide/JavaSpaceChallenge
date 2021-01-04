@@ -1,9 +1,7 @@
 package application;
 
-import modele.Item;
-import modele.Simulation;
-import modele.U1;
-import modele.U2;
+import modele.*;
+import modele.Object;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,18 +15,18 @@ public class SimulationTest {
 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        ArrayList<Item> phase1Items = simulation.loadItems("src/test/res/TestPhase-1.txt");
+        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
 
-        Assert.assertNotNull(phase1Items);
+        Assert.assertNotNull(om.getObjects());
     }
 
     @Test
     public void testLoadU1() throws IOException {
         Simulation simulation = new Simulation();
 
-        ArrayList<Item> phase1Items = simulation.loadItems("src/test/res/TestPhase-1.txt");
+        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
 
-        ArrayList<U1> rockets1Phase1 = simulation.loadU1(phase1Items);
+        ArrayList<U1> rockets1Phase1 = simulation.loadU1(om.getObjects());
 
         Assert.assertNotNull(rockets1Phase1);
     }
@@ -36,8 +34,9 @@ public class SimulationTest {
     @Test
     public void testLoadU2() throws IOException {
         Simulation simulation = new Simulation();
+        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
 
-        ArrayList<Item> phase2Items = simulation.loadItems("src/test/res/TestPhase-1.txt");
+        ArrayList<Object> phase2Items = om.getObjects();
 
         ArrayList<U2> rockets2Phase1 = simulation.loadU2(phase2Items);
 
@@ -47,12 +46,11 @@ public class SimulationTest {
     @Test
     public void testRunSimulation() throws IOException {
         Simulation simulation = new Simulation();
+        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-1.txt", new Phase("phase1"));
 
-        ArrayList<Item> phase1Items = simulation.loadItems("src/test/res/TestPhase-1.txt");
+        ArrayList<U1> rockets1Phase1 = simulation.loadU1(om.getObjects());
 
-        ArrayList<U1> rockets1Phase1 = simulation.loadU1(phase1Items);
-
-        int budget = simulation.runSimulation(rockets1Phase1);
+        int budget = simulation.runSimulation(rockets1Phase1, DistributionType.LINEAR);
 
         Assert.assertNotSame(budget,0);
     }

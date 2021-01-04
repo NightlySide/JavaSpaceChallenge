@@ -36,7 +36,7 @@ public interface SpaceShip {
 
         returns: est-ce que la fusée peut l'emporter ou non
      */
-    boolean canCarry(Item item);
+    boolean canCarry(Object obj);
 
     /*
         Constructeur
@@ -48,5 +48,5 @@ public interface SpaceShip {
         weight (int): le poids initial de la fusée
         maxWeight (int): le poids maximal que la fusée peut transporter
      */
-    void carry(Item item);
+    void carry(Object obj);
 }

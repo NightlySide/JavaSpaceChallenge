@@ -11,20 +11,21 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import modele.FillingType;
-import modele.InvalidJSONFileException;
-import modele.Scenario;
-import modele.ScenarioManagement;
+import modele.*;
+import modele.Phase;
+import modele.Simulation;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Home {
     @FXML
@@ -43,7 +44,10 @@ public class Home {
     public SplitMenuButton humanRiskButton;
     @FXML
     public SplitMenuButton humanFuseeTypeButton;
-
+    @FXML
+    public Button runSimButton;
+    @FXML
+    public ProgressBar loadingBar;
 
     private Stage stage;
     private Controlleur controlleur;
@@ -157,5 +161,22 @@ public class Home {
                 humanFuseeTypeButton.setText(item.getText());
             }
         }
+    }
+
+    public void runSimulationClick(ActionEvent actionEvent) {
+        Thread t = new Thread(() -> {
+            loadingBar.setVisible(true);
+            runSimButton.setDisable(true);
+            for (int k = 0; k < 10_000; k++){
+                Simulation simu = new Simulation();
+                Phase phase1 = new Phase("phase1");
+                ObjectManagement om = new ObjectManagement(phase1);
+                ArrayList<U1> rockets = simu.loadU1(om.getObjects());
+                System.out.printf("Budget : %d k€%n", simu.runSimulation(rockets, DistributionType.EXPONENTIAL));
+            }
+            loadingBar.setVisible(false);
+            runSimButton.setDisable(false);
+        });
+        t.start();
     }
 }

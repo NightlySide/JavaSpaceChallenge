@@ -5,7 +5,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.annotation.processing.FilerException;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class ObjectManagement {
@@ -17,26 +20,34 @@ public class ObjectManagement {
 
     private final String objectsPath;
     private final Phase phase;
-    private final JSONObject jsonObject;
+    private JSONObject jsonObject;
 
-    public ObjectManagement(Phase phase) throws IOException, ParseException {
+    public ObjectManagement(Phase phase) {
         this.objectsPath = "res/Objects.json";
         this.phase = phase;
 
-        File file = new File(this.objectsPath);
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        this.jsonObject = (JSONObject) o;
+        try {
+            File file = new File(this.objectsPath);
+            JSONParser parser = new JSONParser();
+            java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
+            this.jsonObject = (JSONObject) o;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public ObjectManagement(String objectsPath, Phase phase) throws IOException, ParseException {
+    public ObjectManagement(String objectsPath, Phase phase) {
         this.objectsPath = objectsPath;
         this.phase = phase;
 
-        File file = new File(this.objectsPath);
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        this.jsonObject = (JSONObject) o;
+        try {
+            File file = new File(this.objectsPath);
+            JSONParser parser = new JSONParser();
+            java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
+            this.jsonObject = (JSONObject) o;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getObjectsPath() {
@@ -47,7 +58,7 @@ public class ObjectManagement {
         return phase;
     }
 
-    public Phase getObjects() throws InvalidJSONFileException {
+    public ArrayList<Object> getObjects() {
 
         String value = (String) jsonObject.get("type");
         if (value.compareTo("objects")==0) {
@@ -66,11 +77,12 @@ public class ObjectManagement {
                     ));
                 }
             }
-            return phase;
+            return phase.getObjects();
         }
         else
         {
-            throw new InvalidJSONFileException("Invalid type !");
+            System.out.println("Wrong object type!");
+            return null;
         }
     }
 
