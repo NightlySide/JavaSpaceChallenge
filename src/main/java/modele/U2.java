@@ -28,32 +28,14 @@ public class U2 extends Rocket{
     }
 
     @Override
-    public boolean launch(DistributionType crashDistroType)
+    public boolean launch()
     {
-        // On calcule le risque de se crasher
-        double chance_of_crash;
-        switch (crashDistroType) {
-            case EXPONENTIAL:
-                chance_of_crash = CrashDistribution.ExponentialDistributionChance(this, this.getCrashPercentAtFullLaunch(), 5);
-                break;
-            default:
-                chance_of_crash = CrashDistribution.LinearDistributionChance(this, this.getCrashPercentAtFullLaunch());
-        }
-        return !(this.alea.nextDouble() < chance_of_crash);
+        return this.launch(DistributionType.LINEAR);
     }
 
     @Override
-    public boolean land(DistributionType crashDistroType)
+    public boolean land()
     {
-        // On calcule le risque de se crasher
-        double chance_of_crash;
-        switch (crashDistroType) {
-            case EXPONENTIAL:
-                chance_of_crash = CrashDistribution.ExponentialDistributionChance(this, this.getCrashPercentAtFullLand(), 5);
-                break;
-            default:
-                chance_of_crash = CrashDistribution.LinearDistributionChance(this, this.getCrashPercentAtFullLand());
-        }
-        return !(this.alea.nextDouble() < chance_of_crash);
+        return this.land(DistributionType.LINEAR);
     }
 }

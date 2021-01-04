@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -26,6 +29,18 @@ public class Home {
 
     @FXML
     public HBox linegraph;
+
+    @FXML
+    public SplitMenuButton matRepartButton;
+    @FXML
+    public SplitMenuButton matRiskButton;
+    @FXML
+    public SplitMenuButton matFuseeTypeButton;
+    @FXML
+    public SplitMenuButton humanRiskButton;
+    @FXML
+    public SplitMenuButton humanFuseeTypeButton;
+
 
     private Stage stage;
     private Controlleur controlleur;
@@ -97,5 +112,45 @@ public class Home {
 
     public void editPhase(ActionEvent actionEvent) throws ParseException, InvalidJSONFileException, IOException {
         controlleur.goToPhase();
+    }
+
+    public void matRepartOptionClick(ActionEvent actionEvent) {
+        for (MenuItem item : matRepartButton.getItems()) {
+            if (actionEvent.getSource().equals(item)) {
+                matRepartButton.setText(item.getText());
+            }
+        }
+    }
+
+    public void matRiskOptionClick(ActionEvent actionEvent) {
+        for (MenuItem item : matRiskButton.getItems()) {
+            if (actionEvent.getSource().equals(item)) {
+                matRiskButton.setText(item.getText());
+            }
+        }
+    }
+
+    public void matFuseeTypeOptionClick(ActionEvent actionEvent) {
+        for (MenuItem item : matFuseeTypeButton.getItems()) {
+            if (actionEvent.getSource().equals(item)) {
+                matFuseeTypeButton.setText(item.getText());
+            }
+        }
+    }
+
+    public void humanRiskOptionClick(ActionEvent actionEvent) {
+        for (MenuItem item : humanRiskButton.getItems()) {
+            if (actionEvent.getSource().equals(item)) {
+                humanRiskButton.setText(item.getText());
+            }
+        }
+    }
+
+    public void humanFuseeTypeOptionClick(ActionEvent actionEvent) {
+        for (MenuItem item : humanFuseeTypeButton.getItems()) {
+            if (actionEvent.getSource().equals(item)) {
+                humanFuseeTypeButton.setText(item.getText());
+            }
+        }
     }
 }

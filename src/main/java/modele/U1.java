@@ -35,7 +35,7 @@ public class U1 extends Rocket {
     }
 
     @Override
-    public boolean land(DistributionType crashDistroType)
+    public boolean land()
     {
         return this.land(DistributionType.LINEAR);
     }
