@@ -38,6 +38,7 @@ public class Home {
     LineChart linechart;
     NumberAxis xAxis;
     NumberAxis yAxis;
+    Scenario scenario;
 
     @FXML
     public SplitMenuButton matRepartButton;
@@ -78,6 +79,7 @@ public class Home {
         stage.setScene(new Scene(monPane, 800,600));
         stage.show();
 
+        scenario = ScenarioManagement.getInstance().getScenario();
 
         xAxis = new NumberAxis(0, 20, 10);
         xAxis.setAutoRanging(false);
@@ -107,8 +109,8 @@ public class Home {
         for (MenuItem item : matRepartButton.getItems()) {
             if (actionEvent.getSource().equals(item)) {
                 matRepartButton.setText(item.getText());
-                ScenarioManagement.getInstance().getScenario().setAlgo_fill(FillingType.fromText(item.getText()));
-                System.out.println(ScenarioManagement.getInstance().getScenario().getAlgo_fill());
+                scenario.setAlgo_fill(FillingType.fromText(item.getText()));
+                System.out.println(scenario.getAlgo_fill());
             }
         }
     }
@@ -178,5 +180,13 @@ public class Home {
             runSimButton.setDisable(false);
         });
         t.start();
+    }
+
+    public void saveScenario(ActionEvent actionEvent) {
+        try {
+            ScenarioManagement.getInstance().editScenario(scenario);
+        } catch (InvalidJSONFileException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

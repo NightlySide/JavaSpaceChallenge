@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
     <children>
@@ -35,7 +27,7 @@
          </BorderPane.margin>
          <children>
             <HBox fx:id="linegraph" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" fx:id="loadingBar" visible="false" />
+            <ProgressBar fx:id="loadingBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" visible="false" />
          </children>
       </VBox>
    </center>
@@ -108,7 +100,8 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
         <buttons>
             <Button mnemonicParsing="false" text="Éditer la simulation" ButtonBar.buttonData="LEFT" />
-            <Button mnemonicParsing="false" onAction="#runSimulationClick" text="Lancer la simulation" fx:id="runSimButton" />
+            <Button mnemonicParsing="false" onAction="#saveScenario" text="Sauvegarder Scenario" />
+            <Button fx:id="runSimButton" mnemonicParsing="false" onAction="#runSimulationClick" text="Lancer la simulation" />
             <Button mnemonicParsing="false" onAction="#editPhase" text="Éditer les objets" ButtonBar.buttonData="RIGHT" />
         </buttons>
       </ButtonBar>

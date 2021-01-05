@@ -69,7 +69,8 @@ public class ScenarioManagement {
             HashMap<String, java.lang.Object> nsc = new HashMap<>();
             nsc.put("percentage_u1", scenario.getPercentage_u1());
             nsc.put("percentage_fill", scenario.getPercentage_fill());
-            nsc.put("algo_fill", scenario.getAlgo_fill());
+            nsc.put("algo_fill",scenario.getAlgo_fill().toString());
+            nsc.put("crash_distro_type", scenario.getCrashDistoType().toString());
 
             jsonObject.remove("params");
             jsonObject.put("params",nsc);
