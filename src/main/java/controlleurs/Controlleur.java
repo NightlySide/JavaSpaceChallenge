@@ -6,7 +6,6 @@ import modele.Service;
 import org.json.simple.parser.ParseException;
 import vues.Home;
 import vues.Phase;
-import vues.Simulation;
 
 import java.io.IOException;
 
@@ -14,7 +13,6 @@ public class Controlleur {
 
     private Home home;
     private Phase phase;
-    private Simulation simulation;
 
     private Service service;
 
@@ -31,11 +29,5 @@ public class Controlleur {
     public void goToPhase() throws ParseException, InvalidJSONFileException, IOException {
         phase = Phase.creerInstance(this, new Stage());
         phase.show();
-    }
-
-    public void goToSimulation()
-    {
-        simulation = Simulation.creerInstance(this, new Stage());
-        simulation.show();
     }
 }

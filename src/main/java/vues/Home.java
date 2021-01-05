@@ -73,47 +73,22 @@ public class Home {
         return vue;
     }
 
-    private void initChart()
-    {
-        xAxis = new NumberAxis(0, 20, 10);
-        xAxis.setAutoRanging(false);
-        xAxis.setLabel("Hour");
-
-        yAxis = new NumberAxis(0, 100, 10);
-        yAxis.setAutoRanging(false);
-        yAxis.setLabel("Cookies");
-
-        linechart = new LineChart(xAxis, yAxis);
-
-        XYChart.Series<Integer,Integer> series = new XYChart.Series<>();
-        series.setName("Number of cookies in my room");
-        series.getData().add(new XYChart.Data<>(0, 100));
-        series.getData().add(new XYChart.Data<>(6, 80));
-        series.getData().add(new XYChart.Data<>(10, 50));
-        series.getData().add(new XYChart.Data<>(12, 40));
-        series.getData().add(new XYChart.Data<>(16, 20));
-        series.getData().add(new XYChart.Data<>(20, 0));
-
-        XYChart.Series<Integer,Integer> series2 = new XYChart.Series<>();
-        series2.setName("My weight");
-        series2.getData().add(new XYChart.Data<>(0, 60));
-        series2.getData().add(new XYChart.Data<>(6, 62));
-        series2.getData().add(new XYChart.Data<>(10, 68));
-        series2.getData().add(new XYChart.Data<>(12, 75));
-        series2.getData().add(new XYChart.Data<>(16, 79));
-        series2.getData().add(new XYChart.Data<>(20, 80));
-
-        linechart.getData().addAll(series,series2);
-
-        linegraph.getChildren().add(linechart);
-        linegraph.setAlignment(Pos.CENTER);
-    }
-
     public void show() {
         stage.setTitle("JSC");
         stage.setScene(new Scene(monPane, 800,600));
         stage.show();
-        this.initChart();
+
+
+        xAxis = new NumberAxis(0, 20, 10);
+        xAxis.setAutoRanging(false);
+
+        yAxis = new NumberAxis(0, 100, 10);
+        yAxis.setAutoRanging(false);
+
+        linechart = new LineChart(xAxis, yAxis);
+
+        linegraph.getChildren().add(linechart);
+        linegraph.setAlignment(Pos.CENTER);
     }
 
     private void setControlleur(Controlleur controlleur) {
@@ -171,6 +146,8 @@ public class Home {
     }
 
     public void runSimulationClick(ActionEvent actionEvent) {
+
+
         XYChart.Series<Integer,Integer> serieBudget = new XYChart.Series<>();
         serieBudget.setName("Simulation");
         linechart.getData().add(serieBudget);
