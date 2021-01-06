@@ -109,6 +109,10 @@ public class Home {
         saveScenarioButton.setDisable(true);
         clearScreenButton.setDisable(true);
         runSimButton.setDisable(true);
+        humanRiskButton.setDisable(true);
+        matRepartButton.setDisable(true);
+        matFuseeTypeButtonP1.setDisable(true);
+        matFuseeTypeButtonP2.setDisable(true);
     }
 
     private void setControlleur(Controlleur controlleur) {
@@ -274,6 +278,10 @@ public class Home {
                     saveScenarioButton.setDisable(false);
                     clearScreenButton.setDisable(false);
                     runSimButton.setDisable(false);
+                    humanRiskButton.setDisable(false);
+                    matRepartButton.setDisable(false);
+                    matFuseeTypeButtonP1.setDisable(false);
+                    matFuseeTypeButtonP2.setDisable(false);
                     Console.getInstance().addLine("[+] Scenario chargé !");
                 }
                 catch (Exception e) {
