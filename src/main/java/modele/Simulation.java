@@ -106,19 +106,23 @@ public class Simulation {
 
         returns: le cout de la mission
      */
-    public int runSimulation(ArrayList<? extends Rocket> rocketsList) {
+    public SimulationResults runSimulation(ArrayList<? extends Rocket> rocketsList) {
         DistributionType crashDistrib = ScenarioManagement.getInstance().getScenario().getCrashDistoType();
 
-        int budget = 0;
+        SimulationResults results = new SimulationResults();
         // pour chacune des fusées à lancer
         for (Rocket rocket : rocketsList) {
+            int nbCrash = -1;
             do {
                 // on la lance puis on vérifie qu'elle ne se soit pas crashée
-                budget += rocket.getPrice();
+                nbCrash++;
+                results.nbLancementFusees++;
+                results.budget += rocket.getPrice();
             } while(!rocket.launch(crashDistrib) || !rocket.land(crashDistrib));
+            results.nbExplosionsFusees += nbCrash;
         }
 
         // on retourne le cout de la mission
-        return budget;
+        return results;
     }
 }

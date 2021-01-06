@@ -63,11 +63,11 @@ public class ObjectManagement {
                 {
                     JSONObject data = (JSONObject) val;
                     this.phase.addObject(new Object(
-                            (String) data.get("name"),
-                            Math.toIntExact((long) data.get("price")),
-                            Math.toIntExact((long)data.get("weight")),
-                            Math.toIntExact((long)data.get("quantity")),
-                            (String) data.get("priority")
+                            data.getString("name"),
+                            Math.toIntExact(data.getLong("price")),
+                            Math.toIntExact(data.getLong("weight")),
+                            Math.toIntExact(data.getLong("quantity")),
+                            data.getString("priority")
                     ));
                 }
             }

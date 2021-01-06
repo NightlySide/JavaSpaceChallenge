@@ -50,7 +50,7 @@ public class SimulationTest {
 
         ArrayList<U1> rockets1Phase1 = simulation.loadU1(om.getObjects());
 
-        int budget = simulation.runSimulation(rockets1Phase1);
+        int budget = simulation.runSimulation(rockets1Phase1).budget;
 
         Assert.assertNotSame(budget,0);
     }

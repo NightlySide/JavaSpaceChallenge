@@ -173,6 +173,7 @@ public class Home {
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
             int nbIter = 2000;
+            SimulationResults results = new SimulationResults();
             for (int k = 0; k < nbIter; k++){
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
@@ -183,17 +184,17 @@ public class Home {
                 } catch (InvalidJSONFileException e) {
                     e.printStackTrace();
                 }
-                double budget = simu.runSimulation(rockets);
-                points.add(new XYChart.Data<>(k, (int) budget));
+                results = simu.runSimulation(rockets);
+                points.add(new XYChart.Data<>(k, (int) results.budget));
                 xAxis.setUpperBound(k);
-                if ((double) budget > maxBudget) {
-                    maxBudget = (double) budget;
+                if ((double) results.budget > maxBudget) {
+                    maxBudget = (double) results.budget;
                 }
                 yAxis.setUpperBound(maxBudget);
-                moyenne += budget;
+                moyenne += results.budget;
             }
             moyenne = moyenne / nbIter;
-            Console.getInstance().addLine(String.format("Budget moyen : %.2f k€", moyenne));
+            Console.getInstance().addLine("[+] " + results.toString());
             serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
             runSimButton.setDisable(false);
