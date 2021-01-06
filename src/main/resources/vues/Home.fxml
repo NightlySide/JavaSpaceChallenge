@@ -4,18 +4,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 <?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
 
+<?import javafx.collections.FXCollections?>
 <BorderPane fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
     <children>
         <VBox alignment="CENTER_LEFT" />
@@ -48,8 +47,10 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie matériel" />
             <ComboBox value="répartition">
               <items>
-                <String fx:value="Je réparti le matériel" />
-                <String fx:value="Je bourre" />
+                  <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Je réparti le matériel" />
+                    <String fx:value="Je bourre" />
+                  </FXCollections>
               </items>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -57,8 +58,10 @@
             </ComboBox>
             <ComboBox value="risque">
               <items>
-                <String fx:value="très précautionneux" />
-                <String fx:value="Yolo" />
+                  <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="très précautionneux" />
+                    <String fx:value="Yolo" />
+                  </FXCollections>
               </items>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -66,8 +69,10 @@
             </ComboBox>
             <ComboBox value="fusée">
               <items>
-                <String fx:value="U1" />
-                <String fx:value="U2" />
+                  <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="U1" />
+                    <String fx:value="U2" />
+                  </FXCollections>
               </items>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -79,8 +84,10 @@
                </VBox.margin></Text>
             <ComboBox value="risque">
                <items>
-                  <String fx:value="priorité vie humaine" />
-                  <String fx:value="chair à canon" />
+                   <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="priorité vie humaine" />
+                      <String fx:value="chair à canon" />
+                   </FXCollections>
                </items>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -88,8 +95,10 @@
             </ComboBox>
             <ComboBox value="fusée">
                 <items>
-                    <String fx:value="U1" />
-                    <String fx:value="U2" />
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="U1" />
+                        <String fx:value="U2" />
+                    </FXCollections>
                 </items>
                <VBox.margin>
                   <Insets top="20.0" />
