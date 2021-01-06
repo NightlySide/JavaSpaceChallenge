@@ -57,18 +57,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox value="risque">
-              <items>
-                  <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="très précautionneux" />
-                    <String fx:value="Yolo" />
-                  </FXCollections>
-              </items>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </ComboBox>
-            <ComboBox value="fusée">
+            <ComboBox fx:id="matFuseeTypeButtonP1" onAction="#matFuseeTypeOptionClickP1" value="fusée">
               <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="U1" />
@@ -94,7 +83,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox value="fusée">
+            <ComboBox fx:id="matFuseeTypeButtonP2" onAction="#matFuseeTypeOptionClickP2" value="fusée">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="U1" />

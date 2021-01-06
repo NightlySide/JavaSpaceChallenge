@@ -7,12 +7,18 @@ public class Scenario {
     private double percentage_fill;
     private FillingType algo_fill;
     private DistributionType crashDistoType;
+    private String rocketP1;
+    private String rocketP2;
 
-    public Scenario(double percentage_u1, double percentage_fill, FillingType algo_fill, DistributionType distributionType) {
+
+    public Scenario(double percentage_u1, double percentage_fill, FillingType algo_fill, DistributionType distributionType, String rocketP1, String rocketP2) {
         this.percentage_u1 = percentage_u1;
         this.percentage_fill = percentage_fill;
         this.algo_fill = algo_fill;
         this.crashDistoType = distributionType;
+        this.rocketP1 = rocketP1;
+        this.rocketP2 = rocketP2;
+
     }
 
     public static Scenario fromJsonObject(JSONObject jsonObject) throws InvalidJSONFileException {
@@ -23,8 +29,10 @@ public class Scenario {
                     sc.getDouble("percentage_u1"),
                     sc.getDouble("percentage_fill"),
                     FillingType.valueOf(((String) sc.get("algo_fill")).toUpperCase()),
-                    DistributionType.valueOf((sc.getString("crash_distro_type")).toUpperCase())
-            );
+                    DistributionType.valueOf((sc.getString("crash_distro_type")).toUpperCase()),
+                    sc.getString("rocket_P1"),
+                    sc.getString("rocket_P2")
+                    );
         }
         else
         {
@@ -46,6 +54,10 @@ public class Scenario {
 
     public DistributionType getCrashDistoType() { return crashDistoType; }
 
+    public String getRocketP1() { return rocketP1; }
+
+    public String getRocketP2() { return rocketP2; }
+
     public void setPercentage_u1(double percentage_u1) {
         this.percentage_u1 = percentage_u1;
     }
@@ -59,6 +71,10 @@ public class Scenario {
     }
 
     public void setCrashDistoType(DistributionType crashDistoType) { this.crashDistoType = crashDistoType; }
+
+    public void setRocketP1(String rocketP1) { this.rocketP1 = rocketP1; }
+
+    public void setRocketP2(String rocketP2) { this.rocketP2 = rocketP2; }
 
     @Override
     public String toString() {

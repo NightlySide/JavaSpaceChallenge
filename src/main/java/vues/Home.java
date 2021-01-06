@@ -50,13 +50,11 @@ public class Home {
     @FXML
     public ComboBox<String> matRepartButton;
     @FXML
-    public SplitMenuButton matRiskButton;
+    public ComboBox<String> matFuseeTypeButtonP1;
     @FXML
-    public SplitMenuButton matFuseeTypeButton;
+    public ComboBox<String> matFuseeTypeButtonP2;
     @FXML
     public SplitMenuButton humanRiskButton;
-    @FXML
-    public SplitMenuButton humanFuseeTypeButton;
     @FXML
     public Button runSimButton;
     @FXML
@@ -127,17 +125,15 @@ public class Home {
         Console.getInstance().addLine("[+] Changed reparition algorithm to : " + scenario.getAlgo_fill());
     }
 
-    public void matRiskOptionClick(ActionEvent actionEvent) {
-        scenario.setAlgo_fill(FillingType.fromText(matRepartButton.getValue()));
-        Console.getInstance().addLine("[+] Changed reparition algorithm to : " + scenario.getAlgo_fill());
-    }
 
-    public void matFuseeTypeOptionClick(ActionEvent actionEvent) {
-        for (MenuItem item : matFuseeTypeButton.getItems()) {
-            if (actionEvent.getSource().equals(item)) {
-                matFuseeTypeButton.setText(item.getText());
-            }
-        }
+    public void matFuseeTypeOptionClickP1(ActionEvent actionEvent) {
+        scenario.setRocketP1(matFuseeTypeButtonP1.getValue());
+        Console.getInstance().addLine("[+] Changed rocket P1 to: " + scenario.getRocketP1());
+
+    }
+    public void matFuseeTypeOptionClickP2(ActionEvent actionEvent) {
+        scenario.setRocketP2(matFuseeTypeButtonP2.getValue());
+        Console.getInstance().addLine("[+] Changed rocket P2 to: " + scenario.getRocketP2());
     }
 
     public void humanRiskOptionClick(ActionEvent actionEvent) {
@@ -148,13 +144,6 @@ public class Home {
         }
     }
 
-    public void humanFuseeTypeOptionClick(ActionEvent actionEvent) {
-        for (MenuItem item : humanFuseeTypeButton.getItems()) {
-            if (actionEvent.getSource().equals(item)) {
-                humanFuseeTypeButton.setText(item.getText());
-            }
-        }
-    }
 
     public void runSimulationClick(ActionEvent actionEvent) {
 
@@ -280,4 +269,9 @@ public class Home {
     public void getNbIterations(ActionEvent actionEvent) {
         Console.getInstance().addLine("NbChanged");
     }
+
+    public void rocketTypeP1click(ActionEvent actionEvent) {
+    }
+
+
 }
