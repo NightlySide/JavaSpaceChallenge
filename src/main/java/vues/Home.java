@@ -244,4 +244,8 @@ public class Home {
     public void clearScreen(ActionEvent actionEvent) {
         linechart.getData().clear();
     }
+
+    public void getNbIterations(ActionEvent actionEvent) {
+        Console.getInstance().addLine("NbChanged");
+    }
 }
