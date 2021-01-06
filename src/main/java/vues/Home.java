@@ -55,6 +55,10 @@ public class Home {
     public TextArea textConsole;
     @FXML
     public Spinner<Integer> nbIter;
+    @FXML
+    public Button clearScreenButton;
+    @FXML
+    public Button saveScenarioButton;
 
     private Stage stage;
     private Controlleur controlleur;
@@ -102,7 +106,9 @@ public class Home {
         linegraph.getChildren().add(linechart);
         linegraph.setAlignment(Pos.CENTER);
 
-        updateButtonsFromScenario();
+        saveScenarioButton.setDisable(true);
+        clearScreenButton.setDisable(true);
+        runSimButton.setDisable(true);
     }
 
     private void setControlleur(Controlleur controlleur) {
@@ -264,6 +270,10 @@ public class Home {
                     ScenarioManagement.getInstance().fromFile(selectedFile);
 
                     updateButtonsFromScenario();
+
+                    saveScenarioButton.setDisable(false);
+                    clearScreenButton.setDisable(false);
+                    runSimButton.setDisable(false);
                     Console.getInstance().addLine("[+] Scenario chargé !");
                 }
                 catch (Exception e) {

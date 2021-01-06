@@ -132,10 +132,9 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
         <buttons>
-            <Button mnemonicParsing="false" text="Éditer la simulation" ButtonBar.buttonData="LEFT" />
             <Button mnemonicParsing="false" onAction="#loadScenario" text="Charger Scenario" />
-            <Button mnemonicParsing="false" onAction="#saveScenario" text="Sauvegarder Scenario" />
-            <Button mnemonicParsing="false" onAction="#clearScreen" text="Effacer les courbes" />
+            <Button mnemonicParsing="false" onAction="#saveScenario" text="Sauvegarder Scenario" fx:id="saveScenarioButton" />
+            <Button mnemonicParsing="false" onAction="#clearScreen" text="Effacer les courbes" fx:id="clearScreenButton" />
             <Button fx:id="runSimButton" mnemonicParsing="false" onAction="#runSimulationClick" text="Lancer la simulation" />
             <Button mnemonicParsing="false" onAction="#editPhase" text="Éditer les objets" ButtonBar.buttonData="RIGHT" />
         </buttons>
