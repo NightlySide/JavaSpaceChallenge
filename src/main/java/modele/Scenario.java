@@ -1,6 +1,6 @@
 package modele;
 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 public class Scenario {
     private double percentage_u1;
@@ -20,10 +20,10 @@ public class Scenario {
         if (value.compareTo("scenario")==0) {
             JSONObject sc = (JSONObject) jsonObject.get("params");
             return new Scenario(
-                    (Double) sc.get("percentage_u1"),
-                    (Double) sc.get("percentage_fill"),
+                    sc.getDouble("percentage_u1"),
+                    sc.getDouble("percentage_fill"),
                     FillingType.valueOf(((String) sc.get("algo_fill")).toUpperCase()),
-                    DistributionType.valueOf(((String) sc.get("crash_distro_type")).toUpperCase())
+                    DistributionType.valueOf((sc.getString("crash_distro_type")).toUpperCase())
             );
         }
         else

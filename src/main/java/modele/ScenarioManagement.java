@@ -1,13 +1,12 @@
 package modele;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONObject;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class ScenarioManagement {
     private String scenarioPath;
@@ -19,13 +18,10 @@ public class ScenarioManagement {
     private ScenarioManagement() {
         this.scenarioPath = "res/Scenario.json";
 
-        File file = new File(this.scenarioPath);
-        JSONParser parser = new JSONParser();
         try {
-            java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-            this.jsonObject = (JSONObject) o;
+            this.jsonObject = new JSONObject(Files.readString(Paths.get(scenarioPath)));
             this.scenario = Scenario.fromJsonObject(this.jsonObject);
-        } catch (IOException | ParseException | InvalidJSONFileException e) {
+        } catch (IOException | InvalidJSONFileException e) {
             e.printStackTrace();
         }
     }
@@ -46,19 +42,13 @@ public class ScenarioManagement {
     }
 
     public void fromFile(File file) throws IOException, ParseException, InvalidJSONFileException {
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        jsonObject = (JSONObject) o;
+        this.jsonObject = new JSONObject(Files.readString(Paths.get(scenarioPath)));
         this.scenario = Scenario.fromJsonObject(this.jsonObject);
     }
     public void fromScenario(Scenario scenario) throws IOException, ParseException {
         scenarioPath = "res/Scenario.json";
         this.scenario = scenario;
-
-        File file = new File(scenarioPath);
-        JSONParser parser = new JSONParser();
-        java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-        this.jsonObject = (JSONObject) o;
+        this.jsonObject = new JSONObject(Files.readString(Paths.get(scenarioPath)));
     }
 
     public Scenario getScenario() {
@@ -78,12 +68,26 @@ public class ScenarioManagement {
             jsonObject.remove("params");
             jsonObject.put("params",nsc);
             FileWriter writer = new FileWriter(this.scenarioPath);
-            writer.write(jsonObject.toJSONString());
+            writer.write(jsonObject.toString(4));
             writer.close();
         }
         else
         {
             throw new InvalidJSONFileException("Invalid type !");
         }
+    }
+
+    public void saveScenario(String filepath) throws IOException {
+        HashMap<String, java.lang.Object> nsc = new HashMap<>();
+        nsc.put("percentage_u1", scenario.getPercentage_u1());
+        nsc.put("percentage_fill", scenario.getPercentage_fill());
+        nsc.put("algo_fill",scenario.getAlgo_fill().toString());
+        nsc.put("crash_distro_type", scenario.getCrashDistoType().toString());
+
+        JSONObject jsonData = new JSONObject();
+        jsonData.put("params", nsc);
+        FileWriter writer = new FileWriter(filepath);
+        writer.write(jsonData.toString(4));
+        writer.close();
     }
 }

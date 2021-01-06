@@ -1,1 +1,9 @@
-{"type":"scenario","params":{"crash_distro_type":"LINEAR","percentage_fill":0.9,"algo_fill":"PACKET","percentage_u1":0.5}}
+{
+    "type": "scenario",
+    "params": {
+        "crash_distro_type": "LINEAR",
+        "algo_fill": "PACKET",
+        "percentage_u1": 0.5,
+        "percentage_fill": 0.9
+    }
+}

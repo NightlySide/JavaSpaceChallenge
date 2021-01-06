@@ -1,12 +1,12 @@
 package modele;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.annotation.processing.FilerException;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,11 +27,8 @@ public class ObjectManagement {
         this.phase = phase;
 
         try {
-            File file = new File(this.objectsPath);
-            JSONParser parser = new JSONParser();
-            java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-            this.jsonObject = (JSONObject) o;
-        } catch (IOException | ParseException e) {
+            this.jsonObject = new JSONObject(Files.readString(Paths.get(this.objectsPath)));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -41,11 +38,8 @@ public class ObjectManagement {
         this.phase = phase;
 
         try {
-            File file = new File(this.objectsPath);
-            JSONParser parser = new JSONParser();
-            java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
-            this.jsonObject = (JSONObject) o;
-        } catch (IOException | ParseException e) {
+            this.jsonObject = new JSONObject(Files.readString(Paths.get(this.objectsPath)));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -96,9 +90,9 @@ public class ObjectManagement {
             newObject.put("quantity", object.getQuantity());
             newObject.put("priority", object.getPriority());
             JSONArray phase = (JSONArray) jsonObject.get(this.phase.getName());
-            phase.add(newObject);
+            phase.put(newObject);
             FileWriter writer = new FileWriter(this.objectsPath);
-            writer.write(jsonObject.toJSONString());
+            writer.write(jsonObject.toString(4));
             writer.close();
         }
         else {

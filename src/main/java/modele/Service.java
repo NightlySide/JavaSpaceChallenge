@@ -1,7 +1,5 @@
 package modele;
 
-import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,7 @@ public class Service {
         return simulation;
     }
 
-    public static void main(String[] args) throws IOException, ParseException, InvalidJSONFileException {
+    public static void main(String[] args) throws InvalidJSONFileException {
 
 
         //Phase phase = new Phase("phase2",new ArrayList<>());

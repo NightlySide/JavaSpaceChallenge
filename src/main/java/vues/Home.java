@@ -26,7 +26,6 @@ import javafx.util.converter.NumberStringConverter;
 import modele.*;
 import modele.Phase;
 import modele.Simulation;
-import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,7 +118,7 @@ public class Home {
         this.stage = stage;
     }
 
-    public void editPhase(ActionEvent actionEvent) throws ParseException, InvalidJSONFileException, IOException {
+    public void editPhase(ActionEvent actionEvent) throws InvalidJSONFileException, IOException {
         controlleur.goToPhase();
     }
 
@@ -206,9 +205,33 @@ public class Home {
     }
 
     public void saveScenario(ActionEvent actionEvent) {
+        Console.getInstance().addLine("[  ] Sauvegarde du scenario ...");
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregister le scenario");
+
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Scenario File", "*.json"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+            File selectedFile = fileChooser.showSaveDialog(stage);
+
+            if (selectedFile != null) {
+                // sauvegarde du fichier
+                ScenarioManagement.getInstance().saveScenario(selectedFile.getAbsolutePath());
+                Console.getInstance().addLine("[+] Scenario sauvegardé !");
+            }
+            else {
+                Console.getInstance().addLine("[-] Action annulée");
+            }
+        } catch (Exception e) {
+            Console.getInstance().addLine("[-] Erreur dans la sauvegarde du scenario...");
+        }
+
+
         try {
             ScenarioManagement.getInstance().editScenario(scenario);
-            Console.getInstance().addLine("[+] Scenario sauvegardé !");
+
         } catch (InvalidJSONFileException | IOException e) {
             e.printStackTrace();
             Console.getInstance().addLine("[-] Erreur dans la sauvegarde du scenario...");

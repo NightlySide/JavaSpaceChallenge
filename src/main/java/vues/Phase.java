@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import modele.InvalidJSONFileException;
 import modele.Object;
 import modele.ObjectManagement;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +44,7 @@ public class Phase {
         return vue;
     }
 
-    public void show() throws ParseException, InvalidJSONFileException, IOException {
+    public void show() throws InvalidJSONFileException, IOException {
         stage.setTitle("JSC");
         stage.setScene(new Scene(monPane, 800,600));
         stage.show();
@@ -53,7 +52,7 @@ public class Phase {
         initObjectPhase2();
     }
 
-    public void initObjectPhase1() throws IOException, ParseException, InvalidJSONFileException {
+    public void initObjectPhase1() throws IOException, InvalidJSONFileException {
         modele.Phase phase = new modele.Phase("phase1");
         phase = new ObjectManagement(phase).getPhase();
         tablePhase1.getItems().addAll(phase.getObjects());
@@ -101,7 +100,7 @@ public class Phase {
         tablePhase1.getColumns().set(4,priority);
     }
 
-    public void initObjectPhase2() throws IOException, ParseException, InvalidJSONFileException {
+    public void initObjectPhase2() throws IOException, InvalidJSONFileException {
         modele.Phase phase = new modele.Phase("phase2");
         phase = new ObjectManagement(phase).getPhase();
         tablePhase2.getItems().addAll(phase.getObjects());
