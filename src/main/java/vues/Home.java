@@ -71,23 +71,13 @@ public class Home {
         Home vue = fxmlLoader.getController();
         vue.setStage(stage);
         vue.setControlleur(controlleur);
+        vue.init();
 
         return vue;
     }
 
-    public void show() {
-        stage.setTitle("JSC");
-        stage.setScene(new Scene(monPane, 1024,600));
-        stage.show();
-
+    public void init() {
         scenario = ScenarioManagement.getInstance().getScenario();
-        updateButtonsFromScenario();
-
-        Console.getInstance().attachTextarea(textConsole);
-        Console.getInstance().printHelloWorld();
-        Console.getInstance().update();
-
-        nbIter.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20000, 200, 100));
 
         xAxis = new NumberAxis(0, 20, 10);
         xAxis.setAutoRanging(false);
@@ -95,7 +85,21 @@ public class Home {
         yAxis = new NumberAxis(0, 100, 10);
         yAxis.setAutoRanging(false);
 
-        linechart = new LineChart(xAxis, yAxis);
+        linechart = new LineChart<>(xAxis, yAxis);
+    }
+
+    public void show() {
+        stage.setTitle("JSC");
+        stage.setScene(new Scene(monPane, 1024,600));
+        stage.show();
+
+        updateButtonsFromScenario();
+
+        Console.getInstance().attachTextarea(textConsole);
+        Console.getInstance().printHelloWorld();
+        Console.getInstance().update();
+
+        nbIter.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20000, 200, 100));
 
         linegraph.getChildren().add(linechart);
         linegraph.setAlignment(Pos.CENTER);
@@ -289,13 +293,4 @@ public class Home {
     public void clearScreen(ActionEvent actionEvent) {
         linechart.getData().clear();
     }
-
-    public void getNbIterations(ActionEvent actionEvent) {
-        Console.getInstance().addLine("NbChanged");
-    }
-
-    public void rocketTypeP1click(ActionEvent actionEvent) {
-    }
-
-
 }
