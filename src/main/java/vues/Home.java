@@ -153,7 +153,8 @@ public class Home {
         linechart.getData().add(serieBudget);
 
         Thread t = new Thread(() -> {
-            double maxBudget = yAxis.getUpperBound();
+            double maxBudget = -1;
+            double minBudget = -1;
             loadingBar.setVisible(true);
             runSimButton.setDisable(true);
             Console.getInstance().addLine(String.format("[  ] Démarrage de la simulation n°%d", linechart.getData().size()));
@@ -183,10 +184,14 @@ public class Home {
 
                 points.add(new XYChart.Data<>(k, (int) results.get(results.size() - 1).budget));
                 xAxis.setUpperBound(k);
-                if ((double) results.get(results.size() - 1).budget > maxBudget) {
+                if (maxBudget == -1 || (double) results.get(results.size() - 1).budget > maxBudget) {
                     maxBudget = (double) results.get(results.size() - 1).budget;
                 }
-                yAxis.setUpperBound(maxBudget);
+                if (minBudget == -1 || (double) results.get(results.size() - 1).budget < minBudget) {
+                    minBudget = (double) results.get(results.size() - 1).budget;
+                }
+                yAxis.setUpperBound(maxBudget * 1.10);
+                yAxis.setLowerBound(minBudget * 0.90);
             }
             SimulationResults moyenne = SimulationResults.moyenne(results);
             //Console.getInstance().addLine("[+] Détail -> " + results.toString());
