@@ -1,8 +1,6 @@
 package vues;
 
 import controlleurs.Controlleur;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,26 +13,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
 import modele.*;
 import modele.Phase;
 import modele.Simulation;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class Home {
     @FXML
@@ -164,16 +154,13 @@ public class Home {
             int nbIter = 2000;
             SimulationResults results = new SimulationResults();
             for (int k = 0; k < nbIter; k++){
-                Simulation simu = new Simulation();
-                Phase phase1 = new Phase("phase1");
-                ObjectManagement om = new ObjectManagement(phase1);
-                ArrayList<U1> rockets = null;
                 try {
-                    rockets = simu.loadU1(om.getObjects());
-                } catch (InvalidJSONFileException e) {
+                    results = runOnce();
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvalidJSONFileException e) {
                     e.printStackTrace();
                 }
-                results = simu.runSimulation(rockets);
+
+
                 points.add(new XYChart.Data<>(k, (int) results.budget));
                 xAxis.setUpperBound(k);
                 if ((double) results.budget > maxBudget) {
@@ -192,6 +179,32 @@ public class Home {
             Console.getInstance().update();
         });
         t.start();
+    }
+    public SimulationResults runOnce() throws ClassNotFoundException, InvalidJSONFileException, IllegalAccessException, InstantiationException {
+        Simulation simu = new Simulation();
+        SimulationResults results = new SimulationResults();
+        Phase phase1 = new Phase("phase1");
+        ObjectManagement om1 = new ObjectManagement(phase1);
+        Phase phase2 = new Phase("phase2");
+        ObjectManagement om2 = new ObjectManagement(phase2);
+        ArrayList<? extends Rocket> rocketsP1 = null;
+
+        if (scenario.getRocketP1().equals("U1"))
+            rocketsP1 = simu.loadRocket(om1.getObjects(), U1.class);
+        else
+            rocketsP1 = simu.loadRocket(om1.getObjects(), U2.class);
+
+        ArrayList<? extends Rocket> rocketsP2 = null;
+
+        if (scenario.getRocketP2().equals("U1"))
+            rocketsP2 = simu.loadRocket(om2.getObjects(), U1.class);
+        else
+            rocketsP2 = simu.loadRocket(om2.getObjects(), U2.class);
+
+        ArrayList<Rocket> rockets = new ArrayList();
+        rockets.addAll(rocketsP1);
+        rockets.addAll(rocketsP2);
+        return simu.runSimulation(rockets);
     }
 
     public void saveScenario(ActionEvent actionEvent) {

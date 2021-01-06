@@ -19,78 +19,40 @@ import java.util.Scanner;
 public class Simulation {
 
     /*
-        Méthode : loadU1(ArrayList<Item>)
-        ---------------------------------
-        Permet de charger les objets de la liste dans des fusées de type U1.
-        Des qu'une fusée est pleine on ajoute une nouvelle fusée du type au programme.
+       Méthode : loadU2(ArrayList<Item>)
+       ---------------------------------
+       Permet de charger les objets de la liste dans des fusées de type U2.
+       Des qu'une fusée est pleine on ajoute une nouvelle fusée du type au programme.
 
-        itemsList (ArrayList<Item>): la liste des objets à emmener
+       itemsList (ArrayList<Item>): la liste des objets à emmener
 
-        returns: la liste des fusées de type U1 à lancer
-     */
-    public ArrayList<U1> loadU1(ArrayList<Object> objList) {
+       returns: la liste des fusées de type U2 à lancer
+    */
+    public <T extends Rocket> ArrayList<T> loadRocket(ArrayList<Object> objList, Class<T> rocketType) throws InstantiationException,IllegalAccessException {
         FillingType fillAlgo = ScenarioManagement.getInstance().getScenario().getAlgo_fill();
 
+
         // on instancie la liste des fusées que l'on va renvoyer
-        ArrayList<U1> rocketsList = new ArrayList<>();
+        ArrayList<T> rocketsList = new ArrayList<>();
         // on y ajoute la première fusée que l'on va remplir
-        rocketsList.add(new U1());
+        rocketsList.add(rocketType.newInstance());
 
         // on récupère la référence à la dernière fusée ajoutée à la liste
-        U1 currentRocket = rocketsList.get(rocketsList.size() - 1);
+        T currentRocket = rocketsList.get(rocketsList.size() - 1);
         // pour chaque objet à emmener
         for (Object obj : objList) {
             // si la fusée actuelle ne peut plus emmener cet objet
             if (!currentRocket.canCarry(obj)) {
                 // on ajoute une fusée au programme et on met à jour la référence
                 // de la fusée actuelle
-                rocketsList.add(new U1());
+                rocketsList.add(rocketType.newInstance());
                 currentRocket = rocketsList.get(rocketsList.size() - 1);
             }
 
             // on ajoute l'objet à la cargaison de la fusée
             currentRocket.carry(obj);
+
         }
-
-        // on retourne la liste des fusées que l'on va envoyer
-        return rocketsList;
-    }
-
-    /*
-        Méthode : loadU2(ArrayList<Item>)
-        ---------------------------------
-        Permet de charger les objets de la liste dans des fusées de type U2.
-        Des qu'une fusée est pleine on ajoute une nouvelle fusée du type au programme.
-
-        itemsList (ArrayList<Item>): la liste des objets à emmener
-
-        returns: la liste des fusées de type U2 à lancer
-     */
-    public ArrayList<U2> loadU2(ArrayList<Object> objList) {
-        FillingType fillAlgo = ScenarioManagement.getInstance().getScenario().getAlgo_fill();
-
-        // on instancie la liste des fusées que l'on va renvoyer
-        ArrayList<U2> rocketsList = new ArrayList<>();
-        // on y ajoute la première fusée que l'on va remplir
-        rocketsList.add(new U2());
-
-        // on récupère la référence à la dernière fusée ajoutée à la liste
-        U2 currentRocket = rocketsList.get(rocketsList.size() - 1);
-        // pour chaque objet à emmener
-        for (Object obj : objList) {
-            // si la fusée actuelle ne peut plus emmener cet objet
-            if (!currentRocket.canCarry(obj)) {
-                // on ajoute une fusée au programme et on met à jour la référence
-                // de la fusée actuelle
-                rocketsList.add(new U2());
-                currentRocket = rocketsList.get(rocketsList.size() - 1);
-            }
-
-            // on ajoute l'objet à la cargaison de la fusée
-            currentRocket.carry(obj);
-        }
-
-        // on retourne la liste des fusées que l'on va envoyer
         return rocketsList;
     }
 

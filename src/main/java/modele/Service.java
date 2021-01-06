@@ -12,7 +12,7 @@ public class Service {
         return simulation;
     }
 
-    public static void main(String[] args) throws InvalidJSONFileException {
+    public static void main(String[] args) throws InvalidJSONFileException, IllegalAccessException, InstantiationException {
 
 
         //Phase phase = new Phase("phase2",new ArrayList<>());
@@ -69,8 +69,8 @@ public class Service {
         /*
             SIMULATION WITH ONLY U1
          */
-        ArrayList<U1> rockets1Phase1 = simulation.loadU1(phase1Items);
-        ArrayList<U1> rockets1Phase2 = simulation.loadU1(phase2Items);
+        ArrayList<U1> rockets1Phase1 = simulation.loadRocket(phase1Items, U1.class);
+        ArrayList<U1> rockets1Phase2 = simulation.loadRocket(phase2Items, U1.class);
 
         int budget1Phase1 = simulation.runSimulation(rockets1Phase1).budget;
         int budget1Phase2 = simulation.runSimulation(rockets1Phase2).budget;
@@ -83,8 +83,8 @@ public class Service {
         /*
             SIMULATION WITH ONLY U2
          */
-        ArrayList<U2> rockets2Phase1 = simulation.loadU2(phase1Items);
-        ArrayList<U2> rockets2Phase2 = simulation.loadU2(phase2Items);
+        ArrayList<U2> rockets2Phase1 = simulation.loadRocket(phase1Items, U2.class);
+        ArrayList<U2> rockets2Phase2 = simulation.loadRocket(phase2Items, U2.class);
 
         int budget2Phase1 = simulation.runSimulation(rockets2Phase1).budget;
         int budget2Phase2 = simulation.runSimulation(rockets2Phase2).budget;
