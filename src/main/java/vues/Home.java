@@ -93,8 +93,6 @@ public class Home {
         stage.setScene(new Scene(monPane, 1024,600));
         stage.show();
 
-        updateButtonsFromScenario();
-
         Console.getInstance().attachTextarea(textConsole);
         Console.getInstance().printHelloWorld();
         Console.getInstance().update();
@@ -103,6 +101,8 @@ public class Home {
 
         linegraph.getChildren().add(linechart);
         linegraph.setAlignment(Pos.CENTER);
+
+        updateButtonsFromScenario();
     }
 
     private void setControlleur(Controlleur controlleur) {
@@ -145,9 +145,7 @@ public class Home {
         }
     }
 
-
     public void runSimulationClick(ActionEvent actionEvent) {
-
 
         XYChart.Series<Integer,Integer> serieBudget = new XYChart.Series<>();
         serieBudget.setName(String.format("Simulation n°%d", linechart.getData().size() + 1));

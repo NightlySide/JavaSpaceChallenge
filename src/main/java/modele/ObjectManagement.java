@@ -28,7 +28,28 @@ public class ObjectManagement {
 
         try {
             this.jsonObject = new JSONObject(Files.readString(Paths.get(this.objectsPath)));
-        } catch (IOException e) {
+            String value = (String) jsonObject.get("type");
+            if (value.compareTo("objects")==0) {
+                JSONArray ph = (JSONArray) jsonObject.get(this.phase.getName());
+                for (java.lang.Object val : ph) {
+                    if (val instanceof JSONObject) {
+                        JSONObject data = (JSONObject) val;
+                        this.phase.addObject(new Object(
+                                data.getString("name"),
+                                Math.toIntExact(data.getLong("price")),
+                                Math.toIntExact(data.getLong("weight")),
+                                Math.toIntExact(data.getLong("quantity")),
+                                data.getString("priority")
+                        ));
+                    }
+                }
+            }
+            else
+            {
+                throw new InvalidJSONFileException("Wrong object type!");
+            }
+
+        } catch (IOException | InvalidJSONFileException e) {
             e.printStackTrace();
         }
     }
@@ -52,31 +73,8 @@ public class ObjectManagement {
         return phase;
     }
 
-    public ArrayList<Object> getObjects() throws InvalidJSONFileException {
-
-        String value = (String) jsonObject.get("type");
-        if (value.compareTo("objects")==0) {
-            JSONArray ph = (JSONArray) jsonObject.get(this.phase.getName());
-            for(java.lang.Object val : ph)
-            {
-                if(val instanceof JSONObject)
-                {
-                    JSONObject data = (JSONObject) val;
-                    this.phase.addObject(new Object(
-                            data.getString("name"),
-                            Math.toIntExact(data.getLong("price")),
-                            Math.toIntExact(data.getLong("weight")),
-                            Math.toIntExact(data.getLong("quantity")),
-                            data.getString("priority")
-                    ));
-                }
-            }
-            return phase.getObjects();
-        }
-        else
-        {
-            throw new InvalidJSONFileException("Wrong object type!");
-        }
+    public ArrayList<Object> getObjects() {
+        return phase.getObjects();
     }
 
     public void addObjects(Object object) throws IOException, InvalidJSONFileException {

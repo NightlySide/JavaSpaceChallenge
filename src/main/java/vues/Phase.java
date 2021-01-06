@@ -58,6 +58,7 @@ public class Phase {
         modele.Phase phase = new modele.Phase("phase1");
         phase = new ObjectManagement(phase).getPhase();
         tablePhase1.getItems().addAll(phase.getObjects());
+        System.out.println(tablePhase1.getItems().size());
         prepareTablePhase1();
     }
 
