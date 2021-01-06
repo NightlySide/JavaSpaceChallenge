@@ -24,6 +24,7 @@ import modele.Phase;
 import modele.Simulation;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -152,19 +153,20 @@ public class Home {
 
 
         XYChart.Series<Integer,Integer> serieBudget = new XYChart.Series<>();
-        serieBudget.setName("Simulation");
-        linechart.getData().clear();
+        serieBudget.setName(String.format("Simulation n°%d", linechart.getData().size() + 1));
         linechart.getData().add(serieBudget);
 
         Thread t = new Thread(() -> {
             double maxBudget = yAxis.getUpperBound();
+            double moyenne = 0;
             loadingBar.setVisible(true);
             runSimButton.setDisable(true);
-            Console.getInstance().addLine("[  ] Démarrage de la simulation ...");
+            Console.getInstance().addLine(String.format("[  ] Démarrage de la simulation n°%d", linechart.getData().size()));
 
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
-            for (int k = 0; k < 5; k++){
+            int nbIter = 5;
+            for (int k = 0; k < nbIter; k++){
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
                 ObjectManagement om = new ObjectManagement(phase1);
@@ -174,15 +176,17 @@ public class Home {
                 } catch (InvalidJSONFileException e) {
                     e.printStackTrace();
                 }
-                int budget = simu.runSimulation(rockets, DistributionType.EXPONENTIAL);
-                Console.getInstance().addLine(String.format("Budget : %d k€", budget));
-                points.add(new XYChart.Data<>(k, budget));
+                double budget = simu.runSimulation(rockets, DistributionType.EXPONENTIAL);
+                points.add(new XYChart.Data<>(k, (int) budget));
                 xAxis.setUpperBound(k);
                 if ((double) budget > maxBudget) {
                     maxBudget = (double) budget;
                 }
                 yAxis.setUpperBound(maxBudget);
+                moyenne += budget;
             }
+            moyenne = moyenne / nbIter;
+            Console.getInstance().addLine(String.format("Budget moyen : %f k€", moyenne));
             serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
             runSimButton.setDisable(false);
@@ -226,7 +230,7 @@ public class Home {
                 }
                 catch (Exception e) {
                     Console.getInstance().addLine("[-] Mauvais type de fichier");
-                    Console.getInstance().addLine("\t (extension, type de fichier de config.)");
+                    Console.getInstance().addLine("(extension, type de fichier de config.)");
                 }
             }
             else {
@@ -235,5 +239,9 @@ public class Home {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void clearScreen(ActionEvent actionEvent) {
+        linechart.getData().clear();
     }
 }
