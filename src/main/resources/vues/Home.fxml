@@ -51,6 +51,7 @@
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Je réparti le matériel" />
                     <String fx:value="Je bourre" />
+                    <String fx:value="Priorité aux vies humaines" />
                   </FXCollections>
               </items>
                <VBox.margin>
@@ -72,11 +73,12 @@
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></Text>
-            <ComboBox value="risque">
+            <ComboBox value="Distribution de crash" fx:id="crashDistribButton" onAction="#crashDistribOption">
                <items>
                    <FXCollections fx:factory="observableArrayList">
-                      <String fx:value="priorité vie humaine" />
-                      <String fx:value="chair à canon" />
+                      <String fx:value="Linéaire" />
+                      <String fx:value="Exponentielle" />
+                      <String fx:value="Sigmoïde" />
                    </FXCollections>
                </items>
                <VBox.margin>

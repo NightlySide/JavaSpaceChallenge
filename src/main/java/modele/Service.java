@@ -72,8 +72,8 @@ public class Service {
         ArrayList<U1> rockets1Phase1 = simulation.loadRocket(phase1Items, U1.class);
         ArrayList<U1> rockets1Phase2 = simulation.loadRocket(phase2Items, U1.class);
 
-        int budget1Phase1 = simulation.runSimulation(rockets1Phase1).budget;
-        int budget1Phase2 = simulation.runSimulation(rockets1Phase2).budget;
+        double budget1Phase1 = simulation.runSimulation(rockets1Phase1).budget;
+        double budget1Phase2 = simulation.runSimulation(rockets1Phase2).budget;
 
         System.out.printf("Budget U1 : Phase1 : %d | Phase 2 : %d | Total : %d %n",
                             budget1Phase1,
@@ -86,8 +86,8 @@ public class Service {
         ArrayList<U2> rockets2Phase1 = simulation.loadRocket(phase1Items, U2.class);
         ArrayList<U2> rockets2Phase2 = simulation.loadRocket(phase2Items, U2.class);
 
-        int budget2Phase1 = simulation.runSimulation(rockets2Phase1).budget;
-        int budget2Phase2 = simulation.runSimulation(rockets2Phase2).budget;
+        double budget2Phase1 = simulation.runSimulation(rockets2Phase1).budget;
+        double budget2Phase2 = simulation.runSimulation(rockets2Phase2).budget;
 
         System.out.printf("Budget U2 : Phase1 : %d | Phase 2 : %d | Total : %d %n",
                 budget2Phase1,

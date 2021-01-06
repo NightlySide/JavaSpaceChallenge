@@ -44,6 +44,8 @@ public class Home {
     @FXML
     public ComboBox<String> matFuseeTypeButtonP2;
     @FXML
+    public ComboBox<String> crashDistribButton;
+    @FXML
     public SplitMenuButton humanRiskButton;
     @FXML
     public Button runSimButton;
@@ -79,6 +81,7 @@ public class Home {
         stage.show();
 
         scenario = ScenarioManagement.getInstance().getScenario();
+        updateButtonsFromScenario();
 
         Console.getInstance().attachTextarea(textConsole);
         Console.getInstance().printHelloWorld();
@@ -115,6 +118,10 @@ public class Home {
         Console.getInstance().addLine("[+] Changed reparition algorithm to : " + scenario.getAlgo_fill());
     }
 
+    public void crashDistribOption(ActionEvent actionEvent) {
+        scenario.setCrashDistoType(DistributionType.fromText(crashDistribButton.getValue()));
+        Console.getInstance().addLine("[+] Changed crash distrib to : " + scenario.getCrashDistoType());
+    }
 
     public void matFuseeTypeOptionClickP1(ActionEvent actionEvent) {
         scenario.setRocketP1(matFuseeTypeButtonP1.getValue());
@@ -144,33 +151,30 @@ public class Home {
 
         Thread t = new Thread(() -> {
             double maxBudget = yAxis.getUpperBound();
-            double moyenne = 0;
             loadingBar.setVisible(true);
             runSimButton.setDisable(true);
             Console.getInstance().addLine(String.format("[  ] Démarrage de la simulation n°%d", linechart.getData().size()));
 
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
-            int nbIter = 2000;
-            SimulationResults results = new SimulationResults();
-            for (int k = 0; k < nbIter; k++){
+            ArrayList<SimulationResults> results = new ArrayList<>();
+            for (int k = 0; k < nbIter.getValue(); k++){
                 try {
-                    results = runOnce();
+                    results.add(runOnce());
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvalidJSONFileException e) {
                     e.printStackTrace();
                 }
 
-
-                points.add(new XYChart.Data<>(k, (int) results.budget));
+                points.add(new XYChart.Data<>(k, (int) results.get(results.size() - 1).budget));
                 xAxis.setUpperBound(k);
-                if ((double) results.budget > maxBudget) {
-                    maxBudget = (double) results.budget;
+                if ((double) results.get(results.size() - 1).budget > maxBudget) {
+                    maxBudget = (double) results.get(results.size() - 1).budget;
                 }
                 yAxis.setUpperBound(maxBudget);
-                moyenne += results.budget;
             }
-            moyenne = moyenne / nbIter;
-            Console.getInstance().addLine("[+] " + results.toString());
+            SimulationResults moyenne = SimulationResults.moyenne(results);
+            Console.getInstance().addLine("[+] Détail -> " + results.toString());
+            Console.getInstance().addLine("[+] En moyenne -> " + moyenne.toString());
             serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
             runSimButton.setDisable(false);
@@ -257,9 +261,7 @@ public class Home {
                 try {
                     ScenarioManagement.getInstance().fromFile(selectedFile);
 
-                    // on param les boutons
-                    matRepartButton.setValue(scenario.getAlgo_fill().toText());
-
+                    updateButtonsFromScenario();
                     Console.getInstance().addLine("[+] Scenario chargé !");
                 }
                 catch (Exception e) {
@@ -273,6 +275,15 @@ public class Home {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateButtonsFromScenario() {
+        Console.getInstance().addLine("[  ] Updating buttons based on scenario...");
+        // on param les boutons
+        matRepartButton.setValue(scenario.getAlgo_fill().toText());
+        matFuseeTypeButtonP1.setValue(scenario.getRocketP1());
+        matFuseeTypeButtonP2.setValue(scenario.getRocketP2());
+        crashDistribButton.setValue(scenario.getCrashDistoType().toText());
     }
 
     public void clearScreen(ActionEvent actionEvent) {
