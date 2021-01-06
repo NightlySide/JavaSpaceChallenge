@@ -74,6 +74,13 @@ public class Simulation {
         SimulationResults results = new SimulationResults();
         // pour chacune des fusées à lancer
         for (Rocket rocket : rocketsList) {
+            boolean containHumans = false;
+            for (Object o : rocket.getCargo()) {
+                if (o.getName().toLowerCase().equals("colony"))
+                    containHumans = true;
+                    break;
+            }
+
             int nbCrash = -1;
             do {
                 // on la lance puis on vérifie qu'elle ne se soit pas crashée
@@ -82,6 +89,9 @@ public class Simulation {
                 results.budget += rocket.getPrice();
             } while(!rocket.launch(crashDistrib) || !rocket.land(crashDistrib));
             results.nbExplosionsFusees += nbCrash;
+
+            if (containHumans)
+                results.nbMortHumains += nbCrash;
         }
 
         // on retourne le cout de la mission

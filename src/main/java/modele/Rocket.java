@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /*
@@ -17,6 +18,7 @@ public abstract class Rocket implements SpaceShip {
     private int maxWeight;
     private double crashPercentAtFullLand = 5.0;
     private double crashPercentAtFullLaunch = 5.0;
+    private ArrayList<Object> cargo;
 
     /* Getter / Setter du prix */
     public int getPrice() {
@@ -32,6 +34,13 @@ public abstract class Rocket implements SpaceShip {
     }
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public ArrayList<Object> getCargo() {
+        return cargo;
+    }
+    public void setCargo(ArrayList<Object> cargo) {
+        this.cargo = cargo;
     }
 
     /* Getter / Setter du poids maximal de la fusée */
@@ -121,6 +130,7 @@ public abstract class Rocket implements SpaceShip {
      */
     public void carry(Object obj)
     {
+        this.cargo.add(obj);
         this.weight += obj.getWeight();
     }
 
@@ -140,6 +150,7 @@ public abstract class Rocket implements SpaceShip {
         this.maxWeight = maxWeight;
         this.crashPercentAtFullLand = crashPercentAtFullLand;
         this.crashPercentAtFullLaunch = crashPercentAtFullLaunch;
+        this.cargo = new ArrayList<>();
 
         this.alea = new Random();
     }

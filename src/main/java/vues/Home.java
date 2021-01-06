@@ -182,7 +182,7 @@ public class Home {
                 yAxis.setUpperBound(maxBudget);
             }
             SimulationResults moyenne = SimulationResults.moyenne(results);
-            Console.getInstance().addLine("[+] Détail -> " + results.toString());
+            //Console.getInstance().addLine("[+] Détail -> " + results.toString());
             Console.getInstance().addLine("[+] En moyenne -> " + moyenne.toString());
             serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
