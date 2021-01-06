@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Phase {
+    /*
+
+    */
     private final String name;
     private ArrayList<Object> objects;
+
 
     public Phase(String name, ArrayList<Object> objects) {
         this.name = name;
