@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Console {
 
-    public int maxLines = 50;
+    public int maxLines = 250;
 
     private ArrayList<String> lines;
     private TextArea textArea;

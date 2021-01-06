@@ -86,6 +86,7 @@ public class Home {
 
         Console.getInstance().attachTextarea(textConsole);
         Console.getInstance().printHelloWorld();
+        Console.getInstance().update();
 
         xAxis = new NumberAxis(0, 20, 10);
         xAxis.setAutoRanging(false);
@@ -150,16 +151,18 @@ public class Home {
 
         XYChart.Series<Integer,Integer> serieBudget = new XYChart.Series<>();
         serieBudget.setName("Simulation");
+        linechart.getData().clear();
         linechart.getData().add(serieBudget);
 
         Thread t = new Thread(() -> {
             double maxBudget = yAxis.getUpperBound();
             loadingBar.setVisible(true);
             runSimButton.setDisable(true);
+            Console.getInstance().addLine("[  ] Démarrage de la simulation ...");
 
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
-            for (int k = 0; k < 50; k++){
+            for (int k = 0; k < 5; k++){
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
                 ObjectManagement om = new ObjectManagement(phase1);
@@ -176,6 +179,9 @@ public class Home {
             serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
             runSimButton.setDisable(false);
+
+            Console.getInstance().addLine("[+] Simulation terminée ...");
+            Console.getInstance().update();
         });
         t.start();
     }
