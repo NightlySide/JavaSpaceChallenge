@@ -41,17 +41,18 @@ public class Simulation {
         T currentRocket = rocketsList.get(rocketsList.size() - 1);
         // pour chaque objet à emmener
         for (Object obj : objList) {
-            // si la fusée actuelle ne peut plus emmener cet objet
-            if (!currentRocket.canCarry(obj)) {
-                // on ajoute une fusée au programme et on met à jour la référence
-                // de la fusée actuelle
-                rocketsList.add(rocketType.newInstance());
-                currentRocket = rocketsList.get(rocketsList.size() - 1);
+            for (int k = 0; k < obj.getQuantity(); k++) {
+                // si la fusée actuelle ne peut plus emmener cet objet
+                if (!currentRocket.canCarry(obj)) {
+                    // on ajoute une fusée au programme et on met à jour la référence
+                    // de la fusée actuelle
+                    rocketsList.add(rocketType.newInstance());
+                    currentRocket = rocketsList.get(rocketsList.size() - 1);
+                }
+
+                // on ajoute l'objet à la cargaison de la fusée
+                currentRocket.carry(obj);
             }
-
-            // on ajoute l'objet à la cargaison de la fusée
-            currentRocket.carry(obj);
-
         }
         return rocketsList;
     }

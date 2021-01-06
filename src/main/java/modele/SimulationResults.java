@@ -27,11 +27,16 @@ public class SimulationResults {
         SimulationResults res = new SimulationResults();
         int n = simResList.size();
         for (SimulationResults sim : simResList) {
-            res.budget += sim.budget / n;
-            res.nbExplosionsFusees = sim.nbExplosionsFusees / n;
-            res.nbLancementFusees = sim.nbLancementFusees / n;
-            res.nbMortHumains = sim.nbMortHumains / n;
+            res.budget += sim.budget;
+            res.nbExplosionsFusees += sim.nbExplosionsFusees;
+            res.nbLancementFusees += sim.nbLancementFusees;
+            res.nbMortHumains += sim.nbMortHumains;
         }
+
+        res.budget /= n;
+        res.nbExplosionsFusees /= n;
+        res.nbLancementFusees /= n;
+        res.nbMortHumains /= n;
         return res;
     }
 }

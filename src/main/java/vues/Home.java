@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modele.*;
+import modele.Object;
 import modele.Phase;
 import modele.Simulation;
 
@@ -159,10 +160,16 @@ public class Home {
 
             Phase phase1 = new Phase("phase1");
             ObjectManagement om1 = new ObjectManagement(phase1);
-            Console.getInstance().addLine(String.format("[  ] Phase 1 détectée: %d items", om1.getObjects().size()));
+            int nbItems = 0;
+            for (Object o : om1.getObjects())
+                nbItems += o.getQuantity();
+            Console.getInstance().addLine(String.format("[  ] Phase 1 détectée: %d items", nbItems));
             Phase phase2 = new Phase("phase2");
             ObjectManagement om2 = new ObjectManagement(phase2);
-            Console.getInstance().addLine(String.format("[  ] Phase 2 détectée: %d items", om2.getObjects().size()));
+            nbItems = 0;
+            for (Object o : om2.getObjects())
+                nbItems += o.getQuantity();
+            Console.getInstance().addLine(String.format("[  ] Phase 2 détectée: %d items", nbItems));
 
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
