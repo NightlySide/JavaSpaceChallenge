@@ -17,7 +17,7 @@ public class SimulationResults {
         String res = String.format("Résultats de simulation :%n");
         res += String.format("\tNombre de morts : %.2f%n", nbMortHumains);
         res += String.format("\tNombre de fusées lancées : %.2f%n", nbLancementFusees);
-        res += String.format("\tNombre d'explositions : %.2f%n", nbExplosionsFusees);
+        res += String.format("\tNombre d'explosions : %.2f%n", nbExplosionsFusees);
         res += String.format("\tCoût de la mission : %.2fk€", budget);
 
         return res;

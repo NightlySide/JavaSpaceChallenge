@@ -45,7 +45,7 @@
    <left>
       <VBox prefHeight="319.0" prefWidth="151.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie matériel" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie de tri" />
             <ComboBox fx:id="matRepartButton" onAction="#matRepartOptionClick" value="répartition">
               <items>
                   <FXCollections fx:factory="observableArrayList">
@@ -55,9 +55,13 @@
                   </FXCollections>
               </items>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </ComboBox>
+             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="fusée phase 1">
+                 <VBox.margin>
+                     <Insets top="20.0" />
+                 </VBox.margin></Text>
             <ComboBox fx:id="matFuseeTypeButtonP1" onAction="#matFuseeTypeOptionClickP1" value="fusée">
               <items>
                   <FXCollections fx:factory="observableArrayList">
@@ -66,10 +70,10 @@
                   </FXCollections>
               </items>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </ComboBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie humaine">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Distribution de crash ">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></Text>
@@ -82,9 +86,13 @@
                    </FXCollections>
                </items>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </ComboBox>
+             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="fusée phase 2">
+                 <VBox.margin>
+                     <Insets top="20.0" />
+                 </VBox.margin></Text>
             <ComboBox fx:id="matFuseeTypeButtonP2" onAction="#matFuseeTypeOptionClickP2" value="fusée">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
@@ -93,7 +101,7 @@
                     </FXCollections>
                 </items>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </ComboBox>
             <VBox>
