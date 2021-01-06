@@ -189,8 +189,14 @@ public class Home {
     public void saveScenario(ActionEvent actionEvent) {
         try {
             ScenarioManagement.getInstance().editScenario(scenario);
+            Console.getInstance().addLine("[+] Scenario sauvegardé !");
         } catch (InvalidJSONFileException | IOException e) {
             e.printStackTrace();
+            Console.getInstance().addLine("[-] Erreur dans la sauvegarde du scenario...");
         }
+    }
+
+    public void loadScenario(ActionEvent actionEvent) {
+        Console.getInstance().addLine("[+] Scenario chargé !");
     }
 }
