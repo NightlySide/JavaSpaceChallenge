@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modele.*;
 import modele.Phase;
@@ -24,6 +25,7 @@ import modele.Simulation;
 import org.json.simple.parser.ParseException;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -166,7 +168,12 @@ public class Home {
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
                 ObjectManagement om = new ObjectManagement(phase1);
-                ArrayList<U1> rockets = simu.loadU1(om.getObjects());
+                ArrayList<U1> rockets = null;
+                try {
+                    rockets = simu.loadU1(om.getObjects());
+                } catch (InvalidJSONFileException e) {
+                    e.printStackTrace();
+                }
                 int budget = simu.runSimulation(rockets, DistributionType.EXPONENTIAL);
                 Console.getInstance().addLine(String.format("Budget : %d k€", budget));
                 points.add(new XYChart.Data<>(k, budget));
@@ -197,6 +204,36 @@ public class Home {
     }
 
     public void loadScenario(ActionEvent actionEvent) {
-        Console.getInstance().addLine("[+] Scenario chargé !");
+        Console.getInstance().addLine("[  ] Chargement de scenario ...");
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir un scenario");
+
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Scenario File", "*.json"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+            File selectedFile = fileChooser.showOpenDialog(stage);
+
+            if (selectedFile != null) {
+                try {
+                    ScenarioManagement.getInstance().fromFile(selectedFile);
+
+                    // on param les boutons
+                    matRepartButton.setValue(scenario.getAlgo_fill().toText());
+
+                    Console.getInstance().addLine("[+] Scenario chargé !");
+                }
+                catch (Exception e) {
+                    Console.getInstance().addLine("[-] Mauvais type de fichier");
+                    Console.getInstance().addLine("\t (extension, type de fichier de config.)");
+                }
+            }
+            else {
+                Console.getInstance().addLine("[-] Aucun fichier chargé");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

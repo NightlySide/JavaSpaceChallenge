@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SimulationTest {
     @Test
-    public void testLoadItems() throws IOException {
+    public void testLoadItems() throws IOException, InvalidJSONFileException {
         Simulation simulation = new Simulation();
 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -21,7 +21,7 @@ public class SimulationTest {
     }
 
     @Test
-    public void testLoadU1() throws IOException {
+    public void testLoadU1() throws IOException, InvalidJSONFileException {
         Simulation simulation = new Simulation();
 
         ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
@@ -32,7 +32,7 @@ public class SimulationTest {
     }
 
     @Test
-    public void testLoadU2() throws IOException {
+    public void testLoadU2() throws IOException, InvalidJSONFileException {
         Simulation simulation = new Simulation();
         ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
 
@@ -44,7 +44,7 @@ public class SimulationTest {
     }
 
     @Test
-    public void testRunSimulation() throws IOException {
+    public void testRunSimulation() throws IOException, InvalidJSONFileException {
         Simulation simulation = new Simulation();
         ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-1.txt", new Phase("phase1"));
 

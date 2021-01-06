@@ -58,7 +58,7 @@ public class ObjectManagement {
         return phase;
     }
 
-    public ArrayList<Object> getObjects() {
+    public ArrayList<Object> getObjects() throws InvalidJSONFileException {
 
         String value = (String) jsonObject.get("type");
         if (value.compareTo("objects")==0) {
@@ -81,8 +81,7 @@ public class ObjectManagement {
         }
         else
         {
-            System.out.println("Wrong object type!");
-            return null;
+            throw new InvalidJSONFileException("Wrong object type!");
         }
     }
 

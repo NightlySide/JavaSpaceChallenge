@@ -14,4 +14,14 @@ public enum FillingType {
         }
         return null;
     }
+
+    public String toText() {
+        switch (this) {
+            case NAIVE:
+                return "Je réparti le matériel";
+            case PACKET:
+                return "Je bourre";
+        }
+        return null;
+    }
 }

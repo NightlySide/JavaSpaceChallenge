@@ -25,7 +25,7 @@ public class ScenarioManagement {
             java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
             this.jsonObject = (JSONObject) o;
             this.scenario = Scenario.fromJsonObject(this.jsonObject);
-        } catch (IOException | ParseException e) {
+        } catch (IOException | ParseException | InvalidJSONFileException e) {
             e.printStackTrace();
         }
     }
@@ -38,16 +38,19 @@ public class ScenarioManagement {
         return INSTANCE;
     }
 
-    public void fromPath(String filePath) throws IOException, ParseException {
+    public void fromPath(String filePath) throws IOException, ParseException, InvalidJSONFileException {
         scenarioPath = filePath;
 
         File file = new File(this.scenarioPath);
+        fromFile(file);
+    }
+
+    public void fromFile(File file) throws IOException, ParseException, InvalidJSONFileException {
         JSONParser parser = new JSONParser();
         java.lang.Object o = parser.parse(new FileReader(file.getAbsoluteFile()));
         jsonObject = (JSONObject) o;
         this.scenario = Scenario.fromJsonObject(this.jsonObject);
     }
-
     public void fromScenario(Scenario scenario) throws IOException, ParseException {
         scenarioPath = "res/Scenario.json";
         this.scenario = scenario;

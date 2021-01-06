@@ -15,7 +15,7 @@ public class Scenario {
         this.crashDistoType = distributionType;
     }
 
-    public static Scenario fromJsonObject(JSONObject jsonObject) {
+    public static Scenario fromJsonObject(JSONObject jsonObject) throws InvalidJSONFileException {
         String value = (String) jsonObject.get("type");
         if (value.compareTo("scenario")==0) {
             JSONObject sc = (JSONObject) jsonObject.get("params");
@@ -28,8 +28,7 @@ public class Scenario {
         }
         else
         {
-            System.out.println("Wrong file type");
-            return null;
+            throw new InvalidJSONFileException("Mauvais type de fichier");
         }
     }
 
