@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
     <children>
@@ -41,7 +50,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#matRepartOptionClick" text="Je bourre" />
               </items>
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </SplitMenuButton>
             <SplitMenuButton fx:id="matRiskButton" mnemonicParsing="false" text="risque">
@@ -50,7 +59,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#matRiskOptionClick" text="Yolo" />
               </items>
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </SplitMenuButton>
             <SplitMenuButton fx:id="matFuseeTypeButton" mnemonicParsing="false" text="fusée">
@@ -59,7 +68,29 @@
                 <MenuItem mnemonicParsing="false" onAction="#matFuseeTypeOptionClick" text="U2" />
               </items>
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </SplitMenuButton>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie humaine">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></Text>
+            <SplitMenuButton fx:id="humanRiskButton" mnemonicParsing="false" text="risque">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="priorité vie humaine" />
+                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="chair à canon" />
+               </items>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </SplitMenuButton>
+            <SplitMenuButton fx:id="humanFuseeTypeButton" mnemonicParsing="false" text="fusée">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U1" />
+                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U2" />
+              </items>
+               <VBox.margin>
+                  <Insets top="20.0" />
                </VBox.margin>
             </SplitMenuButton>
          </children>
@@ -69,31 +100,13 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie humaine" />
-            <SplitMenuButton fx:id="humanRiskButton" mnemonicParsing="false" text="risque">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="priorité vie humaine" />
-                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="chair à canon" />
-               </items>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton fx:id="humanFuseeTypeButton" mnemonicParsing="false" text="fusée">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U1" />
-                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U2" />
-              </items>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </SplitMenuButton>
-         </children>
+      <VBox prefHeight="292.0" prefWidth="152.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="10.0" />
          </BorderPane.margin>
+         <children>
+            <TextArea prefHeight="275.0" prefWidth="152.0" />
+         </children>
       </VBox>
    </right>
    <bottom>
