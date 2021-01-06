@@ -165,7 +165,7 @@ public class Home {
 
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
-            int nbIter = 5;
+            int nbIter = 2000;
             for (int k = 0; k < nbIter; k++){
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
@@ -186,7 +186,7 @@ public class Home {
                 moyenne += budget;
             }
             moyenne = moyenne / nbIter;
-            Console.getInstance().addLine(String.format("Budget moyen : %f k€", moyenne));
+            Console.getInstance().addLine(String.format("Budget moyen : %.2f k€", moyenne));
             serieBudget.getData().addAll(points);
             loadingBar.setVisible(false);
             runSimButton.setDisable(false);
