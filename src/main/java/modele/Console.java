@@ -58,12 +58,14 @@ public class Console {
     }
 
     public void printHelloWorld() {
-        addLine("#======================================#");
+        addLine("#=====================================#");
         addLine("Programme d'aide à la décision");
         addLine("Imaginé et développé par :");
         addLine("\t- Alexandre FROEHLICH");
         addLine("\t- Guillaume LEINEN");
         addLine("\t- Erwan AUBRY");
-        addLine("#======================================#");
+        addLine("#=====================================#");
+        addLine("");
+        addLine("[+] Programme prêt à fonctionner !");
     }
 }
