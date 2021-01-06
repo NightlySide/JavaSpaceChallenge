@@ -29,6 +29,8 @@ public class Simulation {
         returns: la liste des fusées de type U1 à lancer
      */
     public ArrayList<U1> loadU1(ArrayList<Object> objList) {
+        FillingType fillAlgo = ScenarioManagement.getInstance().getScenario().getAlgo_fill();
+
         // on instancie la liste des fusées que l'on va renvoyer
         ArrayList<U1> rocketsList = new ArrayList<>();
         // on y ajoute la première fusée que l'on va remplir
@@ -65,6 +67,8 @@ public class Simulation {
         returns: la liste des fusées de type U2 à lancer
      */
     public ArrayList<U2> loadU2(ArrayList<Object> objList) {
+        FillingType fillAlgo = ScenarioManagement.getInstance().getScenario().getAlgo_fill();
+
         // on instancie la liste des fusées que l'on va renvoyer
         ArrayList<U2> rocketsList = new ArrayList<>();
         // on y ajoute la première fusée que l'on va remplir
@@ -102,7 +106,9 @@ public class Simulation {
 
         returns: le cout de la mission
      */
-    public int runSimulation(ArrayList<? extends Rocket> rocketsList, DistributionType crashDistrib) {
+    public int runSimulation(ArrayList<? extends Rocket> rocketsList) {
+        DistributionType crashDistrib = ScenarioManagement.getInstance().getScenario().getCrashDistoType();
+
         int budget = 0;
         // pour chacune des fusées à lancer
         for (Rocket rocket : rocketsList) {

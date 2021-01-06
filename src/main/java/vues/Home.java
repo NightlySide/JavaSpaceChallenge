@@ -1,6 +1,8 @@
 package vues;
 
 import controlleurs.Controlleur;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +15,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 import modele.*;
 import modele.Phase;
 import modele.Simulation;
@@ -60,6 +64,8 @@ public class Home {
     public ProgressBar loadingBar;
     @FXML
     public TextArea textConsole;
+    @FXML
+    public Spinner<Integer> nbIter;
 
     private Stage stage;
     private Controlleur controlleur;
@@ -90,6 +96,8 @@ public class Home {
         Console.getInstance().attachTextarea(textConsole);
         Console.getInstance().printHelloWorld();
         Console.getInstance().update();
+
+        nbIter.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20000, 200, 100));
 
         xAxis = new NumberAxis(0, 20, 10);
         xAxis.setAutoRanging(false);
@@ -176,7 +184,7 @@ public class Home {
                 } catch (InvalidJSONFileException e) {
                     e.printStackTrace();
                 }
-                double budget = simu.runSimulation(rockets, DistributionType.EXPONENTIAL);
+                double budget = simu.runSimulation(rockets);
                 points.add(new XYChart.Data<>(k, (int) budget));
                 xAxis.setUpperBound(k);
                 if ((double) budget > maxBudget) {
