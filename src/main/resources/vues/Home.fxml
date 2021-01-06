@@ -14,6 +14,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ComboBox?>
+
 <BorderPane fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
     <children>
         <VBox alignment="CENTER_LEFT" />
@@ -44,55 +46,55 @@
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie matériel" />
-            <SplitMenuButton fx:id="matRepartButton" mnemonicParsing="false" text="répartition">
+            <ComboBox value="répartition">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#matRepartOptionClick" text="Je réparti le matériel" />
-                <MenuItem mnemonicParsing="false" onAction="#matRepartOptionClick" text="Je bourre" />
+                <String fx:value="Je réparti le matériel" />
+                <String fx:value="Je bourre" />
               </items>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton fx:id="matRiskButton" mnemonicParsing="false" text="risque">
+            </ComboBox>
+            <ComboBox value="risque">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#matRiskOptionClick" text="très précautionneux" />
-                <MenuItem mnemonicParsing="false" onAction="#matRiskOptionClick" text="Yolo" />
+                <String fx:value="très précautionneux" />
+                <String fx:value="Yolo" />
               </items>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton fx:id="matFuseeTypeButton" mnemonicParsing="false" text="fusée">
+            </ComboBox>
+            <ComboBox value="fusée">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#matFuseeTypeOptionClick" text="U1" />
-                <MenuItem mnemonicParsing="false" onAction="#matFuseeTypeOptionClick" text="U2" />
+                <String fx:value="U1" />
+                <String fx:value="U2" />
               </items>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </SplitMenuButton>
+            </ComboBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie humaine">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></Text>
-            <SplitMenuButton fx:id="humanRiskButton" mnemonicParsing="false" text="risque">
+            <ComboBox value="risque">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="priorité vie humaine" />
-                  <MenuItem mnemonicParsing="false" onAction="#humanRiskOptionClick" text="chair à canon" />
+                  <String fx:value="priorité vie humaine" />
+                  <String fx:value="chair à canon" />
                </items>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton fx:id="humanFuseeTypeButton" mnemonicParsing="false" text="fusée">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U1" />
-                <MenuItem mnemonicParsing="false" onAction="#humanFuseeTypeOptionClick" text="U2" />
-              </items>
+            </ComboBox>
+            <ComboBox value="fusée">
+                <items>
+                    <String fx:value="U1" />
+                    <String fx:value="U2" />
+                </items>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </SplitMenuButton>
+            </ComboBox>
          </children>
          <BorderPane.margin>
             <Insets left="10.0" />
@@ -105,7 +107,7 @@
             <Insets right="10.0" />
          </BorderPane.margin>
          <children>
-            <TextArea prefHeight="275.0" prefWidth="152.0" />
+            <TextArea maxWidth="1.7976931348623157E308" prefHeight="334.0" fx:id="textConsole" editable="False" />
          </children>
       </VBox>
    </right>
