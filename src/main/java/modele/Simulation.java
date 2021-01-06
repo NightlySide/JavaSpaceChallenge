@@ -75,23 +75,28 @@ public class Simulation {
         // pour chacune des fusées à lancer
         for (Rocket rocket : rocketsList) {
             boolean containHumans = false;
+            double nbHumans = 0;
             for (Object o : rocket.getCargo()) {
-                if (o.getName().toLowerCase().equals("colony"))
+                if (o.getName().toLowerCase().equals("colony")) {
                     containHumans = true;
+                    nbHumans = (double) o.getWeight() / 80.0;
                     break;
+                }
             }
 
             int nbCrash = -1;
+            double nbMorts = -nbHumans;
             do {
                 // on la lance puis on vérifie qu'elle ne se soit pas crashée
                 nbCrash++;
+                nbMorts += nbHumans;
                 results.nbLancementFusees++;
                 results.budget += rocket.getPrice();
             } while(!rocket.launch(crashDistrib) || !rocket.land(crashDistrib));
             results.nbExplosionsFusees += nbCrash;
 
             if (containHumans)
-                results.nbMortHumains += nbCrash;
+                results.nbMortHumains += nbMorts;
         }
 
         // on retourne le cout de la mission
