@@ -24,6 +24,8 @@ public class Phase {
     public TableView<Object> tablePhase1;
     @FXML
     public TableView<Object> tablePhase2;
+    @FXML
+    public javafx.scene.control.Button closeButton;
 
     private Stage stage;
     private Controlleur controlleur;
@@ -154,5 +156,11 @@ public class Phase {
 
     private void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @FXML
+    private void closeButtonAction(){
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 }

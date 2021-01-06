@@ -3,6 +3,9 @@ package modele;
 import org.json.JSONObject;
 
 public class Scenario {
+    /*
+    la Classe Scenario permet de définir les différents paramètres de simulations définis par les combobox de la page d'acceuil.
+    */
     private double percentage_u1;
     private double percentage_fill;
     private FillingType algo_fill;

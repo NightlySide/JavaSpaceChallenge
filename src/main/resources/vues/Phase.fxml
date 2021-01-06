@@ -70,7 +70,7 @@
         <buttons>
             <AnchorPane prefWidth="265.0">
                <children>
-                  <Button layoutX="59.0" layoutY="7.0" mnemonicParsing="false" text="Annuler" AnchorPane.leftAnchor="59.0" />
+                  <Button layoutX="59.0" layoutY="7.0" mnemonicParsing="false" fx:id="closeButton" onAction="#closeButtonAction" text="Annuler" AnchorPane.leftAnchor="59.0" />
                   <Button layoutX="144.0" layoutY="7.0" mnemonicParsing="false" text="sauvegarder" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="21.0" />
                </children>
                <padding>
