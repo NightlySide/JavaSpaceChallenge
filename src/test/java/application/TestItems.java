@@ -1,12 +1,13 @@
 package application;
 
+import modele.Object;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TestItems {
 
-    Item item1;
-    Item item2;
+    Object item1;
+    Object item2;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -22,14 +23,14 @@ public class TestItems {
 
     @Before
     public void beforeTests() {
-        item1 = new Item("Premier Item", 50);
-        item2 = new Item("Deuxieme Item", 200);
+        item1 = new Object("Premier Item", 50, 50, 1, "low");
+        item2 = new Object("Deuxieme Item", 200, 200, 1, "low");
     }
 
     @Test
     public void type_test() {
         System.out.println("Début du test de typage ...");
-        assertTrue(item1 instanceof Item);
+        assertTrue(item1 instanceof Object);
 
         assertNotEquals(item1, item2);
     }

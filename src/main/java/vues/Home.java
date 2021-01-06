@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,7 @@ import modele.Phase;
 import modele.Simulation;
 import org.json.simple.parser.ParseException;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ public class Home {
     public Button runSimButton;
     @FXML
     public ProgressBar loadingBar;
+    @FXML
+    public TextArea textConsole;
 
     private Stage stage;
     private Controlleur controlleur;
@@ -80,6 +84,9 @@ public class Home {
         stage.show();
 
         scenario = ScenarioManagement.getInstance().getScenario();
+
+        Console.getInstance().attachTextfield(textConsole);
+        Console.getInstance().addLine("Programme Prêt");
 
         xAxis = new NumberAxis(0, 20, 10);
         xAxis.setAutoRanging(false);
