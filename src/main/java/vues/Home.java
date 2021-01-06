@@ -9,10 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -43,7 +42,7 @@ public class Home {
     Scenario scenario;
 
     @FXML
-    public SplitMenuButton matRepartButton;
+    public ComboBox<String> matRepartButton;
     @FXML
     public SplitMenuButton matRiskButton;
     @FXML
@@ -80,13 +79,13 @@ public class Home {
 
     public void show() {
         stage.setTitle("JSC");
-        stage.setScene(new Scene(monPane, 800,600));
+        stage.setScene(new Scene(monPane, 1024,600));
         stage.show();
 
         scenario = ScenarioManagement.getInstance().getScenario();
 
-        Console.getInstance().attachTextfield(textConsole);
-        Console.getInstance().addLine("Programme Prêt");
+        Console.getInstance().attachTextarea(textConsole);
+        Console.getInstance().printHelloWorld();
 
         xAxis = new NumberAxis(0, 20, 10);
         xAxis.setAutoRanging(false);
@@ -113,21 +112,13 @@ public class Home {
     }
 
     public void matRepartOptionClick(ActionEvent actionEvent) {
-        for (MenuItem item : matRepartButton.getItems()) {
-            if (actionEvent.getSource().equals(item)) {
-                matRepartButton.setText(item.getText());
-                scenario.setAlgo_fill(FillingType.fromText(item.getText()));
-                System.out.println(scenario.getAlgo_fill());
-            }
-        }
+        scenario.setAlgo_fill(FillingType.fromText(matRepartButton.getValue()));
+        Console.getInstance().addLine("[+] Changed reparition algorithm to : " + scenario.getAlgo_fill());
     }
 
     public void matRiskOptionClick(ActionEvent actionEvent) {
-        for (MenuItem item : matRiskButton.getItems()) {
-            if (actionEvent.getSource().equals(item)) {
-                matRiskButton.setText(item.getText());
-            }
-        }
+        scenario.setAlgo_fill(FillingType.fromText(matRepartButton.getValue()));
+        Console.getInstance().addLine("[+] Changed reparition algorithm to : " + scenario.getAlgo_fill());
     }
 
     public void matFuseeTypeOptionClick(ActionEvent actionEvent) {
@@ -168,13 +159,13 @@ public class Home {
 
             ArrayList<XYChart.Data<Integer, Integer>> points = new ArrayList<>();
 
-            for (int k = 0; k < 150; k++){
+            for (int k = 0; k < 50; k++){
                 Simulation simu = new Simulation();
                 Phase phase1 = new Phase("phase1");
                 ObjectManagement om = new ObjectManagement(phase1);
                 ArrayList<U1> rockets = simu.loadU1(om.getObjects());
                 int budget = simu.runSimulation(rockets, DistributionType.EXPONENTIAL);
-                System.out.printf("Budget : %d k€%n", budget);
+                Console.getInstance().addLine(String.format("Budget : %d k€", budget));
                 points.add(new XYChart.Data<>(k, budget));
                 xAxis.setUpperBound(k);
                 if ((double) budget > maxBudget) {

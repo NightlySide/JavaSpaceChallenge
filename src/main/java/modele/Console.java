@@ -25,8 +25,8 @@ public class Console {
         return INSTANCE;
     }
 
-    public void attachTextfield(TextArea ta) {
-        ta = textArea;
+    public void attachTextarea(TextArea ta) {
+        textArea = ta;
     }
 
     public void addLine(String message) {
@@ -34,6 +34,7 @@ public class Console {
             lines.remove(0);
         }
         lines.add(message);
+        update();
     }
 
     public void addLines(String[] messages) {
@@ -52,6 +53,17 @@ public class Console {
             for (String msg : lines)
                 content += msg + "\n";
             textArea.setText(content);
+            textArea.setScrollTop(Double.MAX_VALUE);
         }
+    }
+
+    public void printHelloWorld() {
+        addLine("#======================================#");
+        addLine("Programme d'aide à la décision");
+        addLine("Imaginé et développé par :");
+        addLine("\t- Alexandre FROEHLICH");
+        addLine("\t- Guillaume LEINEN");
+        addLine("\t- Erwan AUBRY");
+        addLine("#======================================#");
     }
 }

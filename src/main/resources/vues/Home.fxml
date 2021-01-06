@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
@@ -11,11 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.ComboBox?>
-<?import java.lang.String?>
 
-<?import javafx.collections.FXCollections?>
-<BorderPane fx:id="monPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
+<BorderPane fx:id="monPane" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vues.Home">
     <children>
         <VBox alignment="CENTER_LEFT" />
     </children>
@@ -31,9 +31,9 @@
     </top>
 
    <center>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox maxWidth="1.7976931348623157E308" minWidth="400.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="100.0" right="100.0" />
+            <Insets left="20.0" right="20.0" />
          </BorderPane.margin>
          <children>
             <HBox fx:id="linegraph" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
@@ -45,7 +45,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stratégie matériel" />
-            <ComboBox value="répartition">
+            <ComboBox fx:id="matRepartButton" onAction="#matRepartOptionClick" value="répartition">
               <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Je réparti le matériel" />
@@ -111,12 +111,12 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="292.0" prefWidth="152.0" BorderPane.alignment="CENTER">
+      <VBox prefWidth="300.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="10.0" />
          </BorderPane.margin>
          <children>
-            <TextArea maxWidth="1.7976931348623157E308" prefHeight="334.0" fx:id="textConsole" editable="False" />
+            <TextArea fx:id="textConsole" editable="False" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </right>
