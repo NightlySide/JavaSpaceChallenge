@@ -35,6 +35,10 @@ public class Console {
         update();
     }
 
+    public ArrayList<String> getLines() {
+        return lines;
+    }
+
     public void addLines(String[] messages) {   // permet d'ajouter plusieurs lignes d'un coup
         for (String msg : messages)
             addLine(msg);
@@ -53,6 +57,10 @@ public class Console {
             textArea.setText(content);
             textArea.setScrollTop(Double.MAX_VALUE);
         }
+    }
+
+    public TextArea getAttachedTextArea() {
+        return textArea;
     }
 
     public void printHelloWorld() {
