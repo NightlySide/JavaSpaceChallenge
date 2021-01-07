@@ -1,9 +1,6 @@
 package application;
 
 import modele.DistributionType;
-import modele.Rocket;
-import modele.U1;
-import modele.U2;
 import org.junit.*;
 import static org.junit.Assert.*;
 
