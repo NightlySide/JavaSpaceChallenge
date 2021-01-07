@@ -1,5 +1,7 @@
 # Java Space Challenge
 
+![Badge](https://img.shields.io/badge/coverage-80%25-success)
+
 A decision making tool made by 3 students from the [ENSTA Bretagne](https://www.ensta-bretagne.fr/fr) Engineering school.
 
 For the end of the semester project we tried to develop a decision making tool made in Java in a Space Agency management scenario. This project is called : "*Java Space Challenge*"
