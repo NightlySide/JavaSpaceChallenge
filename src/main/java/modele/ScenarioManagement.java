@@ -34,6 +34,10 @@ public class ScenarioManagement {
         return INSTANCE;
     }
 
+    public JSONObject getJSONObject() {
+        return jsonObject;
+    }
+
     public void fromPath(String filePath) throws IOException, ParseException, InvalidJSONFileException {
         scenarioPath = filePath;
 
@@ -55,7 +59,7 @@ public class ScenarioManagement {
         return this.scenario;
     }
 
-    public void editScenario(Scenario scenario) throws InvalidJSONFileException, IOException {
+    public int editScenario(Scenario scenario) throws InvalidJSONFileException, IOException {
         String value = (String) jsonObject.get("type");
         if (value.compareTo("scenario")==0)
         {
@@ -64,6 +68,8 @@ public class ScenarioManagement {
             nsc.put("percentage_fill", scenario.getPercentage_fill());
             nsc.put("algo_fill",scenario.getAlgo_fill().toString());
             nsc.put("crash_distro_type", scenario.getCrashDistoType().toString());
+            nsc.put("rocket_P1", scenario.getRocketP1());
+            nsc.put("rocket_P2", scenario.getRocketP2());
 
             jsonObject.remove("params");
             jsonObject.put("params",nsc);
@@ -75,6 +81,7 @@ public class ScenarioManagement {
         {
             throw new InvalidJSONFileException("Invalid type !");
         }
+        return 1;
     }
 
     public void saveScenario(String filepath) throws IOException {
