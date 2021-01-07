@@ -15,7 +15,7 @@ public class SimulationTest {
 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
+        ObjectManagement om = new ObjectManagement("res/Objects.json", new Phase("phase2"));
 
         Assert.assertNotNull(om.getObjects());
     }
@@ -24,7 +24,7 @@ public class SimulationTest {
     public void testLoadU1() throws IOException, InvalidJSONFileException, IllegalAccessException, InstantiationException {
         Simulation simulation = new Simulation();
 
-        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
+        ObjectManagement om = new ObjectManagement("res/Objects.json", new Phase("phase2"));
 
         ArrayList<U1> rockets1Phase1 = simulation.loadRocket(om.getObjects(), U1.class);
 
@@ -34,7 +34,7 @@ public class SimulationTest {
     @Test
     public void testLoadU2() throws IOException, InvalidJSONFileException, IllegalAccessException, InstantiationException {
         Simulation simulation = new Simulation();
-        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-2.txt", new Phase("phase2"));
+        ObjectManagement om = new ObjectManagement("res/Objects.json", new Phase("phase2"));
 
         ArrayList<Object> phase2Items = om.getObjects();
 
