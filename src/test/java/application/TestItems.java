@@ -51,4 +51,26 @@ public class TestItems {
         assertEquals(item2.getWeight(), nouveauPoids);
         assertNotEquals(item1.getWeight(), item2.getWeight());
     }
+
+    @Test
+    public void variables() {
+        System.out.println("Début du test des variables ...");
+        assertEquals(item1.getPrice(), 50);
+        item1.setPrice(200);
+        assertEquals(item1.getPrice(), 200);
+
+        assertEquals(item1.getQuantity(), 1);
+        item1.setQuantity(2);
+        assertEquals(item1.getQuantity(), 2);
+
+        assertEquals(item1.getPriority(), "low");
+        item1.setPriority("high");
+        assertEquals(item1.getPriority(), "high");
+    }
+
+    @Test
+    public void toStringTest() {
+        System.out.println("Début du test du toString ...");
+        assertEquals("Object", item1.toString().substring(0, 6));
+    }
 }
