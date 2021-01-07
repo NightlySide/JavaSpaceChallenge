@@ -1,6 +1,6 @@
 # Java Space Challenge
 
-![Badge](https://img.shields.io/badge/coverage-80%25-success)
+![Badge](https://img.shields.io/badge/coverage-83%25-success)
 
 A decision making tool made by 3 students from the [ENSTA Bretagne](https://www.ensta-bretagne.fr/fr) Engineering school.
 

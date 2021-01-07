@@ -43,15 +43,15 @@ public class SimulationTest {
         Assert.assertNotNull(rockets2Phase1);
     }
 
-    /*@Test
+    @Test
     public void testRunSimulation() throws IOException, InvalidJSONFileException, IllegalAccessException, InstantiationException {
         Simulation simulation = new Simulation();
-        ObjectManagement om = new ObjectManagement("src/test/res/TestPhase-1.txt", new Phase("phase1"));
+        ObjectManagement om = new ObjectManagement("res/Objects.json", new Phase("phase1"));
 
         ArrayList<U1> rockets1Phase1 = simulation.loadRocket(om.getObjects(), U1.class);
 
         double budget = simulation.runSimulation(rockets1Phase1).budget;
 
         Assert.assertNotSame(budget,0);
-    }*/
+    }
 }
