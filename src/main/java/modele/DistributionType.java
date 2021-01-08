@@ -1,13 +1,30 @@
 package modele;
 
+/*
+    Enum : DistributionType
+    ------------------------------------------
+    Constantes liées à la distribution de probabilité
+    pour une rocket de se crasher..
+
+    Possibilités : Linéaire, Exponentielle, Sigmoïde
+*/
 public enum DistributionType {
     LINEAR,
     EXPONENTIAL,
     SIGMOID,
     UNDEFINED;
 
+    /*
+        Méthode : fromText(value)
+        ------------------------------------------
+        Permet de convertir une référence en texte vers
+        une constante que le simulateur va pouvoir interpréter...
+
+        value(String): le texte à parser
+
+        returns: constante correspondant au texte
+    */
     public static DistributionType fromText(String value) {
-        /* permet de convertir un texte de bouton en commande interpretable pour le simulateur */
         switch(value) {
             case "Linéaire":
                 return DistributionType.LINEAR;
@@ -20,6 +37,14 @@ public enum DistributionType {
     }
 
 
+    /*
+        Méthode : toText(value)
+        ------------------------------------------
+        Permet de convertir une constante vers un texte
+        qui sera plus agréable à lire pour l'utilisateur
+
+        returns: texte correspondant à la constante
+    */
     public String toText() {
         switch (this) {
             case LINEAR:

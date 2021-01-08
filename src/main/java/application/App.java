@@ -14,6 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        // Démarrage du controlleur de l'application
         Controlleur controlleur = new Controlleur(stage);
     }
 
