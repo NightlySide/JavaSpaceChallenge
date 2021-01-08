@@ -3,9 +3,6 @@ package modele;
 import org.json.JSONObject;
 
 public class Scenario {
-    /*
-    la Classe Scenario permet de définir les différents paramètres de simulations définis par les combobox de la page d'acceuil.
-    */
     private double percentage_u1;
     private double percentage_fill;
     private FillingType algo_fill;
@@ -14,6 +11,12 @@ public class Scenario {
     private String rocketP2;
 
 
+    /*
+        Constructeur : Scenario
+        -----------------------
+        Permet de définir les différents paramètres de simulation
+        définis par les combobox de la page d'accueil.
+    */
     public Scenario(double percentage_u1, double percentage_fill, FillingType algo_fill, DistributionType distributionType, String rocketP1, String rocketP2) {
         this.percentage_u1 = percentage_u1;
         this.percentage_fill = percentage_fill;
@@ -24,6 +27,16 @@ public class Scenario {
 
     }
 
+    /*
+        Méthode : fromJsonObject(jsonObject)
+        -----------------------
+        Permet de construire un nouveau scénario à partir de données
+        au format JSON
+
+        jsonObject (JSONObject) : données à partir desquelles contruire le scenario
+
+        returns: un nouveau scenario
+    */
     public static Scenario fromJsonObject(JSONObject jsonObject) throws InvalidJSONFileException {
         String value = (String) jsonObject.get("type");
         if (value.compareTo("scenario")==0) {

@@ -15,6 +15,13 @@ public class ScenarioManagement {
 
     private static ScenarioManagement INSTANCE = null;
 
+    /*
+        Constructeur : ScenarioManagement
+        ---------------------------------
+        Classe permettant de gérer le scenario en utilisant
+        le pattern de programmation Singleton pour être sûr
+        d'avoir une unique instance du scénario dans le projet
+    */
     private ScenarioManagement() {
         this.scenarioPath = "res/Scenario.json";
 
@@ -26,7 +33,16 @@ public class ScenarioManagement {
         }
     }
 
+    /*
+        Méthode : getInstance()
+        ------------------------------------------
+        Permet de récupérer l'instance de manageur de scenario en
+        suivant les principes du pattern Singleton.
+
+        returns: l'instance du singleton ScenarioManagement
+    */
     public static synchronized ScenarioManagement getInstance() {
+        // si on a pas encore initialisé l'instance on le fait
         if (INSTANCE == null) {
             INSTANCE = new ScenarioManagement();
         }
@@ -38,6 +54,12 @@ public class ScenarioManagement {
         return jsonObject;
     }
 
+    /*
+        Méthode : fromPath(filePath)
+        ------------------------------------------
+        Permet de charger un scenario dans le singleton depuis
+        un chemin de fichier.
+    */
     public void fromPath(String filePath) throws IOException, ParseException, InvalidJSONFileException {
         scenarioPath = filePath;
 
@@ -45,10 +67,23 @@ public class ScenarioManagement {
         fromFile(file);
     }
 
+    /*
+        Méthode : fromFile(file)
+        ------------------------------------------
+        Permet de charger un scenario dans le singleton depuis
+        un fichier.
+    */
     public void fromFile(File file) throws IOException, ParseException, InvalidJSONFileException {
         this.jsonObject = new JSONObject(Files.readString(Paths.get(scenarioPath)));
         this.scenario = Scenario.fromJsonObject(this.jsonObject);
     }
+
+    /*
+        Méthode : fromScenario(scenario)
+        ------------------------------------------
+        Permet de charger un scenario dans le singleton depuis
+        un scenario.
+    */
     public void fromScenario(Scenario scenario) throws IOException, ParseException {
         scenarioPath = "res/Scenario.json";
         this.scenario = scenario;
@@ -59,6 +94,11 @@ public class ScenarioManagement {
         return this.scenario;
     }
 
+    /*
+        Méthode : editScenario(scenario)
+        ------------------------------------------
+        Permet de sauvegarder un scenario dans des données JSON.
+    */
     public int editScenario(Scenario scenario) throws InvalidJSONFileException, IOException {
         String value = (String) jsonObject.get("type");
         if (value.compareTo("scenario")==0)
@@ -84,6 +124,11 @@ public class ScenarioManagement {
         return 1;
     }
 
+    /*
+        Méthode : saveScenario(filepath)
+        ------------------------------------------
+        Permet de sauvegarder un scenario dans un fichier.
+    */
     public void saveScenario(String filepath) throws IOException {
         HashMap<String, java.lang.Object> nsc = new HashMap<>();
         nsc.put("percentage_u1", scenario.getPercentage_u1());

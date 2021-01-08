@@ -7,6 +7,13 @@ public class Object {
     private int quantity;
     private String priority;
 
+    /*
+        Constructeur : Obect()
+        ------------------------------------------
+        Classe permettant de contenir les données d'un objet à envoyer
+        sur mars.
+        Chacune des méthodes correspond à une variable du fichier Object.json
+    */
     public Object(String name, int price, int weight, int quantity, String priority) {
         this.name = name;
         this.price = price;

@@ -9,9 +9,13 @@ public class SimulationResults {
     public double nbLancementFusees = 0;
     public double budget = 0;
 
-    public SimulationResults() {
-
-    }
+    /*
+        Constructeur : SimulationResults()
+        ------------------------------------------
+        Structure de donnée permettant de stocker les statistiques
+        d'une simulation donnée
+    */
+    public SimulationResults() { }
 
     public String toString() {
         String res = String.format("Résultats de simulation :%n");
@@ -23,6 +27,13 @@ public class SimulationResults {
         return res;
     }
 
+    /*
+        Méthode : moyenne(simResList)
+        ------------------------------------------
+        Permet de calculer la moyenne des statistiques de la simulation.
+
+        simResList (ArrayList<SimulationResults>) : liste de résultats
+    */
     public static SimulationResults moyenne(ArrayList<SimulationResults> simResList) {
         SimulationResults res = new SimulationResults();
         int n = simResList.size();

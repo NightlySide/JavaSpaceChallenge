@@ -22,18 +22,33 @@ public class ObjectManagement {
     private final Phase phase;
     private JSONObject jsonObject;
 
+    /*
+        Constructeur : ObjectManagement(phase)
+        ------------------------------------------
+        Classe permettant de gérer les objets d'une phase
+        à partir du chargement depuis le fichier jusqu'à
+        la récupération des objets sous forme de variable.
+
+        phase (Pḧase): phase à partir de laquelle récupérer les objets
+    */
     public ObjectManagement(Phase phase) {
         this.objectsPath = "res/Objects.json";
         this.phase = phase;
 
+        // on va essayer de parser les données
         try {
+            // on récupère les données JSON du fichier
             this.jsonObject = new JSONObject(Files.readString(Paths.get(this.objectsPath)));
             String value = (String) jsonObject.get("type");
+            // si le fichier est du bon type
             if (value.compareTo("objects")==0) {
+                // on récupère les objets de la phase
                 JSONArray ph = (JSONArray) jsonObject.get(this.phase.getName());
+                // pour chaque objet
                 for (java.lang.Object val : ph) {
                     if (val instanceof JSONObject) {
                         JSONObject data = (JSONObject) val;
+                        // on crée une nouvelle instance de variable
                         this.phase.addObject(new Object(
                                 data.getString("name"),
                                 Math.toIntExact(data.getLong("price")),
@@ -54,6 +69,16 @@ public class ObjectManagement {
         }
     }
 
+    /*
+        Constructeur : ObjectManagement(phase)
+        ------------------------------------------
+        Classe permettant de gérer les objets d'une phase
+        à partir du chargement depuis le fichier jusqu'à
+        la récupération des objets sous forme de variable.
+
+        objectsPath (String): chemin vers le fichier d'objets
+        phase (Pḧase): phase à partir de laquelle récupérer les objets
+    */
     public ObjectManagement(String objectsPath, Phase phase) {
         this.objectsPath = objectsPath;
         this.phase = phase;
